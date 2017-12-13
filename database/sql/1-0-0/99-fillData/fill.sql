@@ -1,0 +1,1 @@
+set search_path = starcedu_disk;
