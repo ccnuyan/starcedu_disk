@@ -1,9 +1,7 @@
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-// import withStyles from '../providers/stylesProvider';
 import actions from '../../store/actions';
 
-export const create = (component, stateMap) => {
+const create = (component, stateMap) => {
   const mapDispatchToProps = (dispatch) => {
     const dispatchMap = {};
     Object.keys(actions).forEach((key) => {
@@ -16,3 +14,5 @@ export const create = (component, stateMap) => {
 
   return connect(stateMap, mapDispatchToProps)(component);
 };
+
+export default create;

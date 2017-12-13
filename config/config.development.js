@@ -33,7 +33,6 @@ export default {
     common: {
       stylesheets: {
         normalize: '//cdn.bootcss.com/normalize/6.0.0/normalize.min.css',
-        katex: '//cdn.bootcss.com/KaTeX/0.8.2/katex.min.css',
         semantic: '/static/semantic/semantic.min.css',
       },
       scripts: {
@@ -41,7 +40,6 @@ export default {
         head: '//cdn.bootcss.com/headjs/1.0.3/head.min.js',
         html5shiv: '//cdn.bootcss.com/html5shiv/r29/html5.min.js',
         classlist: '//cdn.bootcss.com/classlist/2014.01.31/classList.min.js',
-        katex: '//cdn.bootcss.com/KaTeX/0.8.2/katex.min.js',
         semantic: '/static/semantic/semantic.min.js',
       },
     },

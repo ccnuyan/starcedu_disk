@@ -5,7 +5,7 @@ import compression from 'compression';
 import delay from 'express-delay';
 import cookieParser from 'cookie-parser';
 
-import './globals';
+import '../globals';
 import { pg } from '../database/connector';
 import config from '../config';
 import api from '../src/api';
@@ -49,10 +49,9 @@ try {
 
     app.get('*', (req, res, next) => {
       if (!req.user) {
-        return res.redirect(301, '/signin?cb=/apps/disk');
-      }else{
-        indexMW({ app: 'app' })(req, res, next)
+        return res.redirect(302, '/signin?cb=/apps/disk/');
       }
+      indexMW({ app: 'app' })(req, res, next);
     });
 
     app.listen(PORT, (err) => {

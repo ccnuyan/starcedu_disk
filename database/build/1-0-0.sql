@@ -42,7 +42,6 @@ set search_path = starcedu_disk;
 CREATE TYPE crud_file_info AS(
   id BIGINT,
   uploader_id BIGINT,
-  uploader_email VARCHAR,
   title VARCHAR,
   filename VARCHAR,
   etag VARCHAR,
@@ -72,15 +71,11 @@ CREATE OR REPLACE FUNCTION generate_file_crud_result(
   message VARCHAR)
 RETURNS starcedu_disk.crud_file_info
 as $$
-DECLARE
-  uploader_email varchar;
 BEGIN
   SET search_path=starcedu_disk;
-  SELECT username FROM users WHERE id = file.uploader_id into uploader_email;
   return (
     file.id,
     file.uploader_id, 
-    uploader_email, 
     file.title, 
     file.filename,
     file.etag,
@@ -106,18 +101,11 @@ DECLARE
   return_message VARCHAR(64);
 BEGIN
   SET search_path=starcedu_disk;
-    
-  IF EXISTS (SELECT users.id FROM users WHERE users.id = uid)
-  THEN
-    INSERT INTO files(uploader_id, filename)
-    VALUES (uid, filename)
-    RETURNING * INTO new_file;
-    success := TRUE;
-    return_message := 'New file created';
-  ELSE
-    success := FALSE;
-    SELECT 'This user does not exist' INTO return_message;
-  END IF;
+  INSERT INTO files(uploader_id, filename)
+  VALUES (uid, filename)
+  RETURNING * INTO new_file;
+  success := TRUE;
+  return_message := 'New file created';
   return starcedu_disk.generate_file_crud_result(new_file, success, return_message);
 END;
 $$

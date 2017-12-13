@@ -7,7 +7,7 @@
     "start": "babel-node server",
     "eslint": "eslint --ignore-path .eslintignore ./**/*.js",
     "wp-dev": "cross-env NODE_ENV=development && webpack-dev-server --config=webpack.dev-config.js",
-    "fe-dev": "cross-env NODE_ENV=development && nodemon --config nodemon/nodemon.frontend.json --delay 3000ms",
+    "fe-dev": "nodemon --config nodemon/nodemon.frontend.json --delay 3000ms",
     "wp-build": "cross-env NODE_ENV=production && rm -r build | webpack --config=webpack.build-config.js",
     "db-build": "babel-node ./database/index build",
     "db-install": "babel-node ./database/index install",
@@ -57,6 +57,7 @@
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-mocha": "^4.11.0",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-react": "^6.10.3",
     "eslint-plugin-standard": "^3.0.1",
@@ -120,11 +121,12 @@
       "promise"
     ],
     "extends": [
+      "eslint:recommended",
       "plugin:import/recommended",
       "plugin:jsx-a11y/recommended",
       "plugin:react/recommended",
+      "plugin:mocha/recommended",
       "plugin:promise/recommended",
-      "eslint:recommended",
       "airbnb/base"
     ],
     "env": {

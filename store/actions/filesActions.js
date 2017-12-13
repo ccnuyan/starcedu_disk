@@ -12,6 +12,7 @@ const base = config.serviceBase;
 const get_uploaded = dispatch => () => {
   const payload = {
     method: 'GET',
+    credentials: 'include',
     headers: getHeaders(),
   };
 

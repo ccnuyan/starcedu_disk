@@ -42,7 +42,6 @@ const require_file = async (req, res) => {
 };
 
 const require_uploaded_files = async (req, res) => {
-  console.log(req.user);
   try {
     const ret = await fileServices.require_uploaded_files({
       uploader_id: req.query.uploader_id || req.user.id,

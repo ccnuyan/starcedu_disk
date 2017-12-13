@@ -10,12 +10,13 @@
     "db/",
     "config/",
     "public/",
-    "api/",
+    "src/",
     "server/",
     "schema/"
   ],
   "env": {
-    "NODE_ENV": "development"
+    "NODE_ENV": "development",
+    "DEBUG":"express:router"
   },
   "ext": "js json"
 }

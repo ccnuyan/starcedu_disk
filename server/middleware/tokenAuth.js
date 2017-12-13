@@ -3,7 +3,6 @@
 */
 
 import { verify } from '../../src/services/tokenServices';
-import config from '../../config';
 
 export default (req, res, next) => {
   // no authorization token: bypass
