@@ -130,6 +130,7 @@
       "airbnb/base"
     ],
     "env": {
+      "mocha": true,
       "browser": true,
       "es6": true
     },
