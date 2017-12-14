@@ -8,7 +8,7 @@
     "eslint": "eslint --ignore-path .eslintignore ./**/*.js",
     "wp-dev": "cross-env NODE_ENV=development && webpack-dev-server --host 127.0.0.1",
     "fe-dev": "nodemon --config nodemon/nodemon.frontend.json --delay 3000ms",
-    "wp-build": "cross-env NODE_ENV=production && rm -r build | webpack --config=webpack.build-config.js",
+    "wp-build": "cross-env NODE_ENV=production && webpack --config=webpack.build-config.js",
     "db-build": "babel-node ./database/index build",
     "db-install": "babel-node ./database/index install",
     "db-functions-dev": "cross-env NODE_ENV=development && nodemon --config nodemon/nodemon.database-functions-dev.json --delay 1000ms",

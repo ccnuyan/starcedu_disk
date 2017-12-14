@@ -1,0 +1,1 @@
+npm i && npm run wp-build && cross-env port=19000 $$ cross-env dbport=6543 && npm start
