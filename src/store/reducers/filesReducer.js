@@ -4,7 +4,6 @@ import actionTypes from '../actionTypes';
 const filesinit = fromJS({
   uploaded: {
     files: {
-      
     },
   },
 });

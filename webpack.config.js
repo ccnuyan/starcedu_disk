@@ -8,7 +8,7 @@ const rules = require('./webpack/commonRules.js');
 
 const config = {
   entry: {
-    app: ['babel-polyfill', './src/app.js'],
+    app: ['babel-polyfill', './src/frontend/app.js'],
     // projector: ['babel-polyfill', './src/projector/index.js'],
     // viewer: ['babel-polyfill', './src/viewer/index.js'],
     vendor: ['whatwg-fetch', 'react', 'react-dom'], // whatwg-fetch is imported in './includes.js'

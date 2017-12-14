@@ -1,6 +1,6 @@
 import { combineReducers, createStore } from 'redux';
+import { fromJS } from 'immutable';
 import reducers from './reducers';
-import { fromJS, Map } from 'immutable';
 
 // Grab the state from a global variable injected into the server-generated HTML
 const preloadedState = window.__PRELOADED_STATE__;
@@ -15,7 +15,7 @@ const store = createStore(
   {
     user: fromJS(preloadedState.user),
     files: fromJS(preloadedState.files),
-    asyncStatus: fromJS({})
+    asyncStatus: fromJS({}),
   },
   global.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );

@@ -30,38 +30,18 @@ export default {
     idleTimeoutMillis: 30000,
   },
   resources: {
-    common: {
-      stylesheets: {
-        normalize: '//cdn.bootcss.com/normalize/6.0.0/normalize.min.css',
-        semantic: '/static/semantic/semantic.min.css',
-        main: '/static/main.css',
-      },
-      scripts: {
-        jquery: '//cdn.bootcss.com/jquery/3.2.1/jquery.min.js',
-        head: '//cdn.bootcss.com/headjs/1.0.3/head.min.js',
-        html5shiv: '//cdn.bootcss.com/html5shiv/r29/html5.min.js',
-        classlist: '//cdn.bootcss.com/classlist/2014.01.31/classList.min.js',
-        semantic: '/static/semantic/semantic.min.js',
-      },
+    stylesheets: {
+      normalize: '//cdn.bootcss.com/normalize/6.0.0/normalize.min.css',
+      semantic: '/static/semantic/semantic.min.css',
+      main: '/static/main.css',
     },
-    app: {
-      stylesheets: {
-      },
-      scripts: {
-      },
-    },
-    projector: {
-      stylesheets: {
-      },
-      scripts: {
-      },
-    },
-    viewer: {
-      stylesheets: {
-      },
-      scripts: {
-      },
+    scripts: {
+      jquery: '//cdn.bootcss.com/jquery/3.2.1/jquery.min.js',
+      head: '//cdn.bootcss.com/headjs/1.0.3/head.min.js',
+      html5shiv: '//cdn.bootcss.com/html5shiv/r29/html5.min.js',
+      classlist: '//cdn.bootcss.com/classlist/2014.01.31/classList.min.js',
+      semantic: '/static/semantic/semantic.min.js',
     },
   },
-  title: 'DEV MODE',
+  title: 'starcedu_disk dev',
 };

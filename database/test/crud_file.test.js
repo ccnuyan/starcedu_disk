@@ -52,7 +52,6 @@ describe('crud_files', () => {
     before(async () => {
       return pool.query('select * from starcedu_disk.require_file($1)', [fileInfo.id])
       .then((res) => {
-        console.log(res.rows[0]);
         requiredFileInfo = res.rows[0];
         return res;
       });

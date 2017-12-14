@@ -3,10 +3,6 @@ import qiniuBusiness from './qiniuBusiness';
 
 const create_file = async (req, res) => {
   try {
-    console.log({
-      uploader_id: req.user.id,
-      filename: req.body.filename,
-    });
     const ret = await fileServices.create_file({
       uploader_id: req.user.id,
       filename: req.body.filename,

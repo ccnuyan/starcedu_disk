@@ -1,8 +1,7 @@
 import actionTypes from '../actionTypes';
-import { getHeaders } from '../../sc_utils';
-import config from '../../config';
+import utils from '../../utils';
+import config from '../../frontend/config';
 import fill from './messagesMW';
-
 
 const base = config.serviceBase;
 
@@ -13,7 +12,7 @@ const get_uploaded = dispatch => () => {
   const payload = {
     method: 'GET',
     credentials: 'include',
-    headers: getHeaders(),
+    headers: utils.getHeaders(),
   };
 
   dispatch(fill({ type: actionTypes.FILES_GET_UPLOADED_START }));
@@ -32,7 +31,7 @@ const get_uploaded = dispatch => () => {
 const update = dispatch => (fileinfo) => {
   const payload = {
     method: 'PUT',
-    headers: getHeaders(),
+    headers: utils.getHeaders(),
     body: JSON.stringify({
       file_id: fileinfo.id,
       title: fileinfo.title,
@@ -59,7 +58,7 @@ const update = dispatch => (fileinfo) => {
 const remove = dispatch => (fileinfo) => {
   const payload = {
     method: 'DELETE',
-    headers: getHeaders(),
+    headers: utils.getHeaders(),
     body: JSON.stringify({ file_id: fileinfo.id }),
   };
 

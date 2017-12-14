@@ -3,9 +3,9 @@
 // use Fine Uploader UI for traditional endpoints
 import fineuploader from 'fine-uploader/lib/core';
 
-import { getHeaders } from '../../sc_utils';
+import utils from '../../utils';
 import actionTypes from '../actionTypes';
-import config from '../../config';
+import config from '../../frontend/config';
 import fill from './messagesMW';
 
 // You may replace "rows" w/ "legacy" or "gallery" depending on your needs
@@ -31,16 +31,15 @@ const initialize = dispatch => (uploaderConf) => {
     },
     callbacks: {
       onSubmit: async (id, name) => {
-
         dispatch(fill({
           type: actionTypes.FILES_UPLOAD_GET_TOKEN_START,
-          payload: { client_id: id, name }
+          payload: { client_id: id, name },
         }));
 
         const payload = {
           method: 'POST',
           credentials: 'include',
-          headers: getHeaders(),
+          headers: utils.getHeaders(),
           body: JSON.stringify({
             filename: name,
           }),
@@ -52,7 +51,7 @@ const initialize = dispatch => (uploaderConf) => {
             uploader.setParams({ token: ret.token, 'x:id': ret.id }, id);
             dispatch(fill({
               type: actionTypes.FILES_UPLOAD_GET_TOKEN_END,
-              payload: { client_id: id, ...ret }
+              payload: { client_id: id, ...ret },
             }));
             return true;
           }).catch(() => {
@@ -61,10 +60,9 @@ const initialize = dispatch => (uploaderConf) => {
           });
       },
       onUpload: (id) => {
-        console.log({ client_id: id })
         dispatch(fill({
           type: actionTypes.FILES_UPLOAD_PROGRESS_START,
-          payload: { client_id: id, uploaded: 0, total: 1 }
+          payload: { client_id: id, uploaded: 0, total: 1 },
         }));
       },
       onProgress: (id, name, uploaded, total) => {
@@ -73,7 +71,7 @@ const initialize = dispatch => (uploaderConf) => {
           payload: {
             client_id: id,
             uploaded,
-            total
+            total,
           },
         }));
       },
@@ -82,7 +80,7 @@ const initialize = dispatch => (uploaderConf) => {
           const payload = {
             method: 'POST',
             credentials: 'include',
-            headers: getHeaders(),
+            headers: utils.getHeaders(),
             body: JSON.stringify(responseJSON),
           };
 
@@ -108,7 +106,7 @@ const initialize = dispatch => (uploaderConf) => {
         const payload = {
           method: 'GET',
           credentials: 'include',
-          headers: getHeaders(),
+          headers: utils.getHeaders(),
         };
 
         return fetch(`${config.serviceBase}/api/files?file_id=${responseJSON.id}`, payload)

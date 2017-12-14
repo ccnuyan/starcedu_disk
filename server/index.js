@@ -9,8 +9,7 @@ import morgan from 'morgan';
 import '../globals';
 import { pg } from '../database/connector';
 import config from '../config';
-import api from '../src/api';
-import indexMW from './middleware/indexMW';
+import routes from '../src';
 import tokenAuth from './middleware/tokenAuth';
 import crossDomain from './middleware/crossDomain';
 
@@ -18,7 +17,6 @@ const app = express();
 
 // serve the app
 const PORT = process.env.PORT || config.port;
-
 global.report();
 
 try {
@@ -27,11 +25,6 @@ try {
       .catch(err => global.printError(err, __dirname));
 
     console.log(`database ${config.pg.host + ':' + config.pg.port} connected`); // eslint-disable-line
-
-    if (config.mode === 'development') {
-      app.use(delay(200, 500));
-      app.use(morgan('tiny'));
-    }
 
     // express middleware
     app.use(compression());
@@ -52,14 +45,12 @@ try {
       next();
     });
 
-    api(app, { pgPool });
+    if (config.mode === 'development') {
+      app.use(delay(100, 300));
+      app.use(morgan('tiny'));
+    }
 
-    app.get('/*', (req, res, next) => {
-      if (!req.user) {
-        return res.redirect(302, '/signin?cb=/apps/disk/');
-      }
-      indexMW({ app: 'app' })(req, res, next);
-    });
+    routes(app);
 
     app.listen(PORT, (err) => {
       if (err) {

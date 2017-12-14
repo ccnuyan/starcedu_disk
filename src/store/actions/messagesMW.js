@@ -1,6 +1,4 @@
 /* eslint-disable no-param-reassign */
-import config from '../../config';
-
 const messageDict = {
   USER_REGISTER_ERROR: () => {
     return {
@@ -90,7 +88,7 @@ const messageDict = {
     return {
       status: 'error',
       inline: '你不能使用该用户名',
-      details: `这可能是因为已经有人使用该用户名注册了 ${config.title}`,
+      details: '这可能是因为已经有人使用该用户名注册了',
     };
   },
   USER_GET_OAUTH_INFO_END: () => {
