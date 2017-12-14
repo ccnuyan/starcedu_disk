@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { create } from './creator';
+import create from './creator';
 import File from './File';
 import './FileList.scss';
 
 
 class FileList extends Component {
   componentDidMount = () => {
-    this.props.files_get_uploaded();
+    console.log(this.props.uploadedFiles);
     this.uploader = this.props.files_initialize({
       button: this.uploadButton,
     });
@@ -18,30 +18,39 @@ class FileList extends Component {
     const files = Object.keys(this.props.uploadedFiles).map((k) => {
       return this.props.uploadedFiles[k];
     });
+
     const sortedFiles = _.sortBy(files, { uploaded_at: -1 });
+
     return (
       <div>
         <div ref={ e => this.uploaderContainerDom = e }></div>
         <div ref={ e => this.filelist = e }>
-          <div className="ui link six doubling stackable cards file-list">
+          <div className="ui six doubling stackable cards">
             <div className="ui card">
               <div className="content">
-                <div className="header">上传素材</div>
+                <div className="header">上传文件</div>
               </div>
               <div className="content">
-                <h4 className="ui sub header">素材格式</h4>
+                <h4 className="ui sub header">文件格式</h4>
                 <div className="ui small feed">
-                  <div className="event">
+                  <div className="label">
                     <div className="content">
                       <h4 className="summary">
                         <a>图片:</a>.jpg/.png/.gif
                       </h4>
                     </div>
                   </div>
-                  <div className="event">
+                  <div className="label">
                     <div className="content">
                       <h4 className="summary">
                         <a>视频:</a>.mp4
+                      </h4>
+                    </div>
+                  </div>
+                  <div className="label">
+                    <div className="content">
+                      <h4 className="summary">
+                        <a>大小:</a>小于10m
                       </h4>
                     </div>
                   </div>
@@ -68,6 +77,7 @@ FileList.propTypes = {
 };
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
     uploadedFiles: state.files.toJSON().uploaded.files,
   };

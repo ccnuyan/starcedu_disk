@@ -120,7 +120,7 @@ export default ({ type, payload }) => {
       },
     };
   }
-  console.log(`no handler found for type: ${type}`); // eslint-disable-line no-console
+  console.log(`no message handler found for type: ${type}`); // eslint-disable-line no-console
   return { type, payload };
 };
 

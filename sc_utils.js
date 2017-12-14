@@ -1,17 +1,17 @@
-const key = 'id_token';
+// const key = 'id_token';
 
-const getLocalToken = () => {
-  return window.localStorage.getItem(key);
-};
+// const getLocalToken = () => {
+//   return window.localStorage.getItem(key);
+// };
 
 export const getHeaders = () => {
   const headers = new Headers();
   headers.append('content-type', 'application/json');
   headers.append('accept', 'application/json');
-  const token = getLocalToken();
-  if (token) {
-    headers.append('authorization', `bearer ${token}`);
-  }
+  // const token = getLocalToken();
+  // if (token) {
+  //   headers.append('authorization', `bearer ${token}`);
+  // }
   return headers;
 };
 

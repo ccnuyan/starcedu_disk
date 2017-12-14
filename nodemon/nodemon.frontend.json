@@ -15,8 +15,7 @@
     "schema/"
   ],
   "env": {
-    "NODE_ENV": "development",
-    "DEBUG":"express:router"
+    "NODE_ENV": "development"
   },
   "ext": "js json"
 }

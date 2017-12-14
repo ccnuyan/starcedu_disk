@@ -1,9 +1,9 @@
 {
   "app": {
-    "js": "//localhost:18080/assets/app.js",
-    "css": "//localhost:18080/assets/app.css"
+    "js": "//127.0.0.1:18080/assets/app.js",
+    "css": "//127.0.0.1:18080/assets/app.css"
   },
   "vendor": {
-    "js": "//localhost:18080/assets/vendor.js"
+    "js": "//127.0.0.1:18080/assets/vendor.js"
   }
 }
