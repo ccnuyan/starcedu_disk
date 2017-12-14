@@ -8,7 +8,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import './style.scss';
 
-import Disk from './Disk';
+import Disk from './components/Disk';
 import store from '../store';
 
 injectTapEventPlugin();

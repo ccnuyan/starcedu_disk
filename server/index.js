@@ -4,8 +4,9 @@ import bodyParser from 'body-parser';
 import compression from 'compression';
 import delay from 'express-delay';
 import cookieParser from 'cookie-parser';
+import morgan from 'morgan';
 
-import './globals';
+import '../globals';
 import { pg } from '../database/connector';
 import config from '../config';
 import api from '../src/api';
@@ -29,6 +30,7 @@ try {
 
     if (config.mode === 'development') {
       app.use(delay(200, 500));
+      app.use(morgan('tiny'));
     }
 
     // express middleware
@@ -45,14 +47,18 @@ try {
     app.use(crossDomain);
     app.use(tokenAuth);
 
+    app.use((req, res, next) => {
+      req.context = { pgPool };
+      next();
+    });
+
     api(app, { pgPool });
 
-    app.get('*', (req, res, next) => {
+    app.get('/*', (req, res, next) => {
       if (!req.user) {
-        return res.redirect(301, '/signin?cb=/apps/disk');
-      }else{
-        indexMW({ app: 'app' })(req, res, next)
+        return res.redirect(302, '/signin?cb=/apps/disk/');
       }
+      indexMW({ app: 'app' })(req, res, next);
     });
 
     app.listen(PORT, (err) => {

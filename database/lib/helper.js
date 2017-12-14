@@ -1,5 +1,6 @@
 import { pg } from '../connector';
 import developer from '../lib/developer';
+import config from '../../config';
 
 function Helpers() {
   this.initDb = async () => {
@@ -10,6 +11,7 @@ function Helpers() {
       // the only time this will fail is on very first run
       // otherwise the DB should always be there
       pool = await pg.connect();
+      console.log(`database ${config.pg.host + ':' + config.pg.port} connected`); // eslint-disable-line
       await developer.install();
     // now load up whatever SQL we want to run
     } catch (err) {

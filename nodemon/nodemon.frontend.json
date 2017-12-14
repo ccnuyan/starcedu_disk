@@ -10,7 +10,7 @@
     "db/",
     "config/",
     "public/",
-    "api/",
+    "src/",
     "server/",
     "schema/"
   ],

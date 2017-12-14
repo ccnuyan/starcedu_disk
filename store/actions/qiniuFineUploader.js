@@ -31,11 +31,15 @@ const initialize = dispatch => (uploaderConf) => {
     },
     callbacks: {
       onSubmit: async (id, name) => {
-        dispatch(fill({ type: actionTypes.FILES_UPLOAD_GET_TOKEN_START,
-          payload: { client_id: id, name } }));
+
+        dispatch(fill({
+          type: actionTypes.FILES_UPLOAD_GET_TOKEN_START,
+          payload: { client_id: id, name }
+        }));
 
         const payload = {
           method: 'POST',
+          credentials: 'include',
           headers: getHeaders(),
           body: JSON.stringify({
             filename: name,
@@ -46,8 +50,10 @@ const initialize = dispatch => (uploaderConf) => {
           .then(res => res.json())
           .then((ret) => {
             uploader.setParams({ token: ret.token, 'x:id': ret.id }, id);
-            dispatch(fill({ type: actionTypes.FILES_UPLOAD_GET_TOKEN_END,
-              payload: { client_id: id, ...ret } }));
+            dispatch(fill({
+              type: actionTypes.FILES_UPLOAD_GET_TOKEN_END,
+              payload: { client_id: id, ...ret }
+            }));
             return true;
           }).catch(() => {
             dispatch(fill({ type: actionTypes.FILES_UPLOAD_GET_TOKEN_ERROR }));
@@ -55,50 +61,61 @@ const initialize = dispatch => (uploaderConf) => {
           });
       },
       onUpload: (id) => {
-        dispatch(fill({ type: actionTypes.FILES_UPLOAD_PROGRESS_START,
-          payload: { client_id: id, uploaded: 0, total: 1 } }));
+        console.log({ client_id: id })
+        dispatch(fill({
+          type: actionTypes.FILES_UPLOAD_PROGRESS_START,
+          payload: { client_id: id, uploaded: 0, total: 1 }
+        }));
       },
       onProgress: (id, name, uploaded, total) => {
-        dispatch(fill({ type: actionTypes.FILES_UPLOAD_PROGRESS_START,
-          payload: { client_id: id,
+        dispatch(fill({
+          type: actionTypes.FILES_UPLOAD_PROGRESS_START,
+          payload: {
+            client_id: id,
             uploaded,
-            total },
+            total
+          },
         }));
       },
       onComplete: (id, name, responseJSON) => {
         if (config.mode === 'development') {
           const payload = {
             method: 'POST',
+            credentials: 'include',
             headers: getHeaders(),
             body: JSON.stringify(responseJSON),
           };
 
           return fetch(`${config.serviceBase}/api/files/upload_callback`, payload)
-          .then(res => res.json())
-          .then((ret) => {
-            dispatch(fill({ type: actionTypes.FILES_UPLOAD_PROGRESS_END,
-              payload: {
-                client_id: id,
-                ...ret,
-              },
-            }));
-            return true;
-          }).catch(() => {
-            dispatch(fill({ type: actionTypes.FILES_UPLOAD_PROGRESS_ERROR,
-              payload: { client_id: id },
-            }));
-            return false;
-          });
+            .then(res => res.json())
+            .then((ret) => {
+              dispatch(fill({
+                type: actionTypes.FILES_UPLOAD_PROGRESS_END,
+                payload: {
+                  client_id: id,
+                  ...ret,
+                },
+              }));
+              return true;
+            }).catch(() => {
+              dispatch(fill({
+                type: actionTypes.FILES_UPLOAD_PROGRESS_ERROR,
+                payload: { client_id: id },
+              }));
+              return false;
+            });
         }
         const payload = {
           method: 'GET',
+          credentials: 'include',
           headers: getHeaders(),
         };
 
         return fetch(`${config.serviceBase}/api/files?file_id=${responseJSON.id}`, payload)
           .then(res => res.json())
           .then((ret) => {
-            dispatch(fill({ type: actionTypes.FILES_UPLOAD_PROGRESS_END,
+            dispatch(fill({
+              type: actionTypes.FILES_UPLOAD_PROGRESS_END,
               payload: {
                 client_id: id,
                 ...ret,
@@ -106,14 +123,16 @@ const initialize = dispatch => (uploaderConf) => {
             }));
             return true;
           }).catch(() => {
-            dispatch(fill({ type: actionTypes.FILES_UPLOAD_PROGRESS_ERROR,
+            dispatch(fill({
+              type: actionTypes.FILES_UPLOAD_PROGRESS_ERROR,
               payload: { client_id: id },
             }));
             return false;
           });
       },
       onError(id) {
-        dispatch({ type: actionTypes.FILES_UPLOAD_PROGRESS_ERROR,
+        dispatch({
+          type: actionTypes.FILES_UPLOAD_PROGRESS_ERROR,
           payload: { client_id: id },
         });
       },

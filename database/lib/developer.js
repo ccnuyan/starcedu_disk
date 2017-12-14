@@ -41,13 +41,13 @@ const install = async (folder) => {
       return Promise.delay(30).then(() => {
         return pg.query(sqlObject.sql)
           .then(() => {
-            console.log(`sql installed: ${path.relative(__dirname, sqlObject.file)}`); // eslint-disable-line
+            // console.log(`sql installed: ${path.relative(__dirname, sqlObject.file)}`); // eslint-disable-line
             return true;
           })
           .catch((err) => {
-            console.log(`*** error:${sqlObject.file} ***`); // eslint-disable-line
+            // console.log(`*** error:${sqlObject.file} ***`); // eslint-disable-line
             console.log(err); // eslint-disable-line
-            console.log(`*** error:${sqlObject.file} ***`); // eslint-disable-line
+            // console.log(`*** error:${sqlObject.file} ***`); // eslint-disable-line
             process.exit(1);
           });
       });

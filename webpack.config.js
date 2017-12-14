@@ -16,7 +16,7 @@ const config = {
   target: 'web',
   output: {
     filename: '[name].js',
-    publicPath: '//localhost:18080/assets/',
+    publicPath: '//127.0.0.1:18080/assets/',
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -43,7 +43,7 @@ const config = {
   devServer: {
     port: 18080,
     contentBase: path.resolve(__dirname, './build/public/assets'), // match the output path
-    publicPath: '//localhost:18080/assets/', // https://webpack.js.org/configuration/dev-server/#devserver-publicpath-
+    publicPath: '//127.0.0.1:18080/assets/', // https://webpack.js.org/configuration/dev-server/#devserver-publicpath-
     // or else resource like ttf will suffer cors
     headers: {
       'Access-Control-Allow-Origin': '*',
