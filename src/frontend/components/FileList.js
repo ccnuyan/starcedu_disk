@@ -23,7 +23,7 @@ class FileList extends Component {
       <div>
         <div ref={ e => this.uploaderContainerDom = e }></div>
         <div ref={ e => this.filelist = e }>
-          <div className="ui six doubling stackable cards">
+          <div className="ui ordered divided selection list">
             {sortedFiles.map((file) => {
               return <File key={ file.client_id } file={ file }/>;
             })}

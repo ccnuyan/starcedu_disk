@@ -28,7 +28,7 @@ class Disk extends Component {
         </div>
         <div className="ui container">
           <Filter/>
-          <div className="ui divider"></div>
+          <div className="ui hidden divider"></div>
           <FileList />
         </div>
       </div >

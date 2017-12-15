@@ -31,6 +31,7 @@ const get_uploaded = dispatch => () => {
 const update = dispatch => (fileinfo) => {
   const payload = {
     method: 'PUT',
+    credentials: 'include',
     headers: utils.getHeaders(),
     body: JSON.stringify({
       file_id: fileinfo.id,
@@ -58,6 +59,7 @@ const update = dispatch => (fileinfo) => {
 const remove = dispatch => (fileinfo) => {
   const payload = {
     method: 'DELETE',
+    credentials: 'include',
     headers: utils.getHeaders(),
     body: JSON.stringify({ file_id: fileinfo.id }),
   };
