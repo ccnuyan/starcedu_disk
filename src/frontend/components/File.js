@@ -78,7 +78,10 @@ class File extends Component {
               <p>Size:{file.size}</p>
             </div>
           </div>}
-        {file.upload_mode ? <div className="ui tiny progress" style={ { position: 'absolute', button: 0 } } data-value={ file.uploaded } data-total={ file.total }>
+        {file.upload_mode ? <div className="ui tiny progress"
+          style={ { position: 'absolute', button: 0 } }
+          data-value={ file.uploaded } data-total={ file.total }
+                            >
           <div className="bar">
             <div className="progress"></div>
           </div>
@@ -102,70 +105,3 @@ const mapStateToProps = () => {
 };
 
 export default create(File, mapStateToProps);
-
-
-{ /* <i className="i outline image icon"></i>
-        <div className="content">
-          <div className="header">
-            {file.title || file.filename || file.name}
-          </div>
-          <div className="extra content" style={ { fontSize: '80%' } }>
-            <div className="meta">
-              <div className="date">{file.uploaded_at ? file.uploaded_at.substring(0, 10) : ''}</div>
-            </div>
-          </div>
-</div> */ }
-{ /* {file.upload_mode ?
-          <div className="ui center loading">
-            {file.upload_mode === 'uploading' ?
-              `${file.uploaded}/${file.total}` :
-              file.upload_mode}
-            <i className="ui icon busy"></i>
-          </div> :
-            <div className="image">
-              <img src={ `http://${config.qiniu_bucket}/${file.etag}` } alt="" className="ui image"/>
-</div> */ }
-{ /* <ui className="right floated menu">
-          {this.state.status === 'normal' ? <div className=" ui red icon button"
-            onTouchTap={ () => this.setState({ status: 'delete' }) }
-                                            >
-            <i className="ui trash icon"></i>
-          </div> : ''}
-          {this.state.status === 'normal' ?
-            <div className="right floated ui icon button"
-              onTouchTap={ () => this.setState({ status: 'rename' }) }
-            >
-              <i className="ui edit icon"></i>
-            </div> : ''}
-        </ui>
-
-        <div className="right floated content">
-          {this.state.status === 'rename' ?
-            <div className="ui form">
-              <div className="ui mini input field">
-                <input ref={ e => this.newNameInput = e } type="text" placeholder="New Name" />
-              </div>
-              <div className="ui mini horizontal buttons">
-                <div className="ui primary button" onTouchTap={ this.handleRename }>
-                  确定
-                        </div>
-                <div className="ui button" onTouchTap={ () => this.setState({ status: 'normal' }) }>
-                  取消
-                        </div>
-              </div>
-            </div> : ''}
-          {this.state.status === 'delete' ?
-            <div className="ui center">
-              <div className="ui inverted header">Delete?</div>
-              <div className="ui mini horizontal buttons">
-                <div className="ui primary button" onTouchTap={ this.handleRemove }>
-                  确定
-                        </div>
-                <div className="ui button"
-                  onTouchTap={ () => this.setState({ status: 'normal' }) }
-                >
-                  取消
-                        </div>
-              </div>
-            </div> : ''}
-</div> */ }
