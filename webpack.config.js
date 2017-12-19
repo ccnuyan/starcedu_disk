@@ -1,17 +1,14 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
 const AssetsPlugin = require('assets-webpack-plugin');
+
 
 const rules = require('./webpack/commonRules.js');
 
 const config = {
   entry: {
     app: ['babel-polyfill', './src/frontend/app.js'],
-    // projector: ['babel-polyfill', './src/projector/index.js'],
-    // viewer: ['babel-polyfill', './src/viewer/index.js'],
-    vendor: ['whatwg-fetch', 'react', 'react-dom'], // whatwg-fetch is imported in './includes.js'
   },
   target: 'web',
   output: {
@@ -34,6 +31,7 @@ const config = {
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor', // Specify the common bundle's name.
+      minChunks: module => /node_modules/.test(module.resource),
     }),
     new webpack.SourceMapDevToolPlugin(),
   ],

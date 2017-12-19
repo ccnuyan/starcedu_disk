@@ -7,15 +7,15 @@
   "verbose": true,
   "exec": "babel-node ./server/index",
   "watch": [
-    "db/",
     "config/",
-    "public/",
-    "src/",
     "server/",
-    "schema/"
+    "src/store",
+    "src/web",
+    "src/api",
+    "src/services"
   ],
   "env": {
     "NODE_ENV": "development"
   },
-  "ext": "js json"
+  "ext": "js json pug"
 }

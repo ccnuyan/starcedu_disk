@@ -7,7 +7,7 @@
   "verbose": true,
   "exec": "babel-node ./database/index functions-dev",
   "watch": [
-    "db/"
+    "database/"
   ],
   "env": {
     "NODE_ENV": "development"

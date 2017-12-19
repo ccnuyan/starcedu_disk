@@ -1,6 +1,8 @@
+// config for database test in remote server;
+
 export default {
   mode: 'test',
-  dbname: 'starcedu_disk',
+  dbname: 'starcedu_auth',
   pg: {
     user: 'postgres',
     database: 'postgres',

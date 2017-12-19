@@ -46,7 +46,7 @@ const requestUpload = (file_id) => {
   }
   return {
     token: putPolicy.uploadToken(mac),
-    id: file_id,
+    id: `${file_id}`,
   };
 };
 

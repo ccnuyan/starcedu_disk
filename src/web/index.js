@@ -4,7 +4,7 @@ import fileServices from '../api/services/fileServices';
 export default (app) => {
   app.get('/', async (req, res) => {
     if (!req.user) {
-      return res.redirect(302, '/signin?cb=/apps/disk/');
+      return res.redirect(302, '/user/signin?cb=/apps/disk/');
     }
 
     const files = await fileServices.require_uploaded_files({ uploader_id: req.user.id }, req.context);
