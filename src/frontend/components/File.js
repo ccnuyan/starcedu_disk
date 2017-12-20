@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import fileSize from 'file-size';
 import PropTypes from 'prop-types';
 import create from './creator';
 import config from '../config';
@@ -91,7 +92,10 @@ class File extends Component {
             </div>
             <a className="small header" >{file.title || file.filename || file.name}</a>
             <div className="small description">
-              <p>Size:{file.size}</p>
+              <p>文件大小:{
+                uploading_state ?
+                (`${fileSize(uploading_state.uploaded).human('si')}/${fileSize(uploading_state.total).human('si')}`) :
+                (`${fileSize(file.size).human('si')}`)}</p>
             </div>
           </div>}
         {(file.busy && uploading_state) ?

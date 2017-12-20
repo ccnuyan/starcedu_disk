@@ -24,11 +24,18 @@ const access_file = async (req, res) => {
       file_id: req.query.file_id,
     }, req.context);
 
+    if (req.user.id !== ret.uploader_id) {
+      return ret.status(401).send({
+        code: 0,
+        message: 'unauthorized',
+      });
+    }
+
     const acessUrlObject = qiniuBusiness.getAccessUrl(ret.etag);
     if (req.isAjaxRequest) {
       return res.send(acessUrlObject);
     }
-    return res.redirect(acessUrlObject.access_url);
+    return res.redirect(`${acessUrlObject.access_url}&attname=${encodeURIComponent(ret.filename || ret.title)}`);
   } catch (err) {
     printError(err, __dirname);
     return res.status(400).send({ success: false });
@@ -40,6 +47,13 @@ const require_file = async (req, res) => {
     const ret = await fileServices.require_file({
       file_id: req.query.file_id,
     }, req.context);
+
+    if (req.user.id !== ret.uploader_id) {
+      return ret.status(401).send({
+        code: 0,
+        message: 'unauthorized',
+      });
+    }
 
     return res.send(ret);
   } catch (err) {

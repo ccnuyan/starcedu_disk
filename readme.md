@@ -6,12 +6,15 @@
 
 客户端上传需考虑开发配置的客户端回调和生产环境的服务端回调
 
-具体见[/src/store/actions/qiniuFineUploader.js#L79-L130](/src/store/actions/qiniuFineUploader.js#L79-L130)
+[../src/store/actions/qiniuFineUploader.js#L79-L129](../src/store/actions/qiniuFineUploader.js#L79-L129)
 
+下载授权：
 
-网盘文件API(需认证)
+[../src/api/files/files.js#L23-L38](../src/api/files/files.js#L23-L38)
 
-baseUrl:/apps/disk/
+网盘文件API(所有服务需认证)
+
+baseUrl: /apps/disk/
 
 1. 请求上传令牌
 Endpoint: `/api/files/`  
