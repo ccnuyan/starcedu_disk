@@ -10,7 +10,7 @@ export default {
     ak: 'JK2nEgwnvAoWh4e7hWyUX3Iuc6fs8-6vL5xNu-kq',
     sk: 'LRKdhh_0T4l_w6q1rbA2T-rNolTogMMjXihigG8x',
     callbackBase: 'http://www.syncollege.com/',
-    url: 'http://7xt1pi.com1.z0.glb.clouddn.com/',
+    url: 'http://7xt1pi.com1.z0.glb.clouddn.com',
   },
   dbname: 'starcedu_disk',
   auth: {
@@ -33,7 +33,6 @@ export default {
     stylesheets: {
       normalize: '//cdn.bootcss.com/normalize/6.0.0/normalize.min.css',
       semantic: '/static/semantic/semantic.min.css',
-      main: '/static/main.css',
     },
     scripts: {
       jquery: '//cdn.bootcss.com/jquery/3.2.1/jquery.min.js',

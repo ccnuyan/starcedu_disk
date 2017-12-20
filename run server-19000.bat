@@ -1,1 +1,1 @@
-set port=19000 && set dbport=6543 && npm start
+npm run wp-build && set port=19000 && set dbport=6543 && npm start

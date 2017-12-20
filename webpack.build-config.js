@@ -14,7 +14,7 @@ const config = {
   output: {
     filename: '[name]-[hash].js',
     path: path.join(__dirname, './build/assets/'),
-    publicPath: './static/assets/',
+    publicPath: '/apps/disk/static/assets/',
   },
   plugins: [
     new webpack.DefinePlugin({

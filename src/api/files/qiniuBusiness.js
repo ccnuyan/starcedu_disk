@@ -3,7 +3,6 @@ import conf from '../../../config';
 
 qiniu.conf.ACCESS_KEY = conf.qiniu.ak;
 qiniu.conf.SECRET_KEY = conf.qiniu.sk;
-
 const mac = new qiniu.auth.digest.Mac(conf.qiniu.ak, conf.qiniu.sk);
 const config = new qiniu.conf.Config();
 const bucketManager = new qiniu.rs.BucketManager(mac, config);
@@ -16,7 +15,7 @@ const bucketManager = new qiniu.rs.BucketManager(mac, config);
  * this function should be called by qiniu;
  */
 
-const requestUpload = (file_id) => {
+const requestUpload = () => {
   // first create the id
   // http://eslint.org/docs/rules/quotes
   let putPolicy;
@@ -46,11 +45,11 @@ const requestUpload = (file_id) => {
   }
   return {
     token: putPolicy.uploadToken(mac),
-    id: `${file_id}`,
   };
 };
 
 const getAccessUrl = (file_id) => {
+  // https://developer.qiniu.com/kodo/sdk/1289/nodejs#private-get
   const deadline = parseInt(Date.now() / 1000, 10) + 3600;
   const access_url = bucketManager.privateDownloadUrl(conf.qiniu.url, file_id, deadline);
   return { access_url };

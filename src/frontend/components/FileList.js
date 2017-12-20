@@ -13,11 +13,11 @@ class FileList extends Component {
   }
 
   render = () => {
-    const files = Object.keys(this.props.uploadedFiles).map((k) => {
-      return this.props.uploadedFiles[k];
+    const files = Object.keys(this.props.uploaded_files).map((k) => {
+      return this.props.uploaded_files[k];
     });
 
-    const sortedFiles = _.sortBy(files, { uploaded_at: -1 });
+    const sortedFiles = _.orderBy(files, ['busy', 'uploaded_at'], ['asc', 'desc']);
 
     return (
       <div>
@@ -25,7 +25,7 @@ class FileList extends Component {
         <div ref={ e => this.filelist = e }>
           <div className="ui ordered divided selection list">
             {sortedFiles.map((file) => {
-              return <File key={ file.client_id } file={ file }/>;
+              return <File key={ file.id } file={ file }/>;
             })}
           </div>
         </div>
@@ -35,14 +35,14 @@ class FileList extends Component {
 }
 
 FileList.propTypes = {
-  uploadedFiles: PropTypes.object.isRequired,
+  uploaded_files: PropTypes.object.isRequired,
   files_get_uploaded: PropTypes.func.isRequired,
   files_initialize: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
-    uploadedFiles: state.files.toJSON().uploaded.files,
+    uploaded_files: state.files.toJSON().uploaded.files,
   };
 };
 

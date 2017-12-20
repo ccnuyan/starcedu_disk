@@ -61,7 +61,7 @@ const initialize = dispatch => (uploaderConf) => {
       },
       onUpload: (id) => {
         dispatch(fill({
-          type: actionTypes.FILES_UPLOAD_PROGRESS_START,
+          type: actionTypes.FILES_UPLOAD_START,
           payload: { client_id: id, uploaded: 0, total: 1 },
         }));
       },
@@ -88,7 +88,7 @@ const initialize = dispatch => (uploaderConf) => {
             .then(res => res.json())
             .then((ret) => {
               dispatch(fill({
-                type: actionTypes.FILES_UPLOAD_PROGRESS_END,
+                type: actionTypes.FILES_UPLOAD_END,
                 payload: {
                   client_id: id,
                   ...ret,
@@ -97,7 +97,7 @@ const initialize = dispatch => (uploaderConf) => {
               return true;
             }).catch(() => {
               dispatch(fill({
-                type: actionTypes.FILES_UPLOAD_PROGRESS_ERROR,
+                type: actionTypes.FILES_UPLOAD_ERROR,
                 payload: { client_id: id },
               }));
               return false;
@@ -113,7 +113,7 @@ const initialize = dispatch => (uploaderConf) => {
           .then(res => res.json())
           .then((ret) => {
             dispatch(fill({
-              type: actionTypes.FILES_UPLOAD_PROGRESS_END,
+              type: actionTypes.FILES_UPLOAD_END,
               payload: {
                 client_id: id,
                 ...ret,
@@ -122,7 +122,7 @@ const initialize = dispatch => (uploaderConf) => {
             return true;
           }).catch(() => {
             dispatch(fill({
-              type: actionTypes.FILES_UPLOAD_PROGRESS_ERROR,
+              type: actionTypes.FILES_UPLOAD_ERROR,
               payload: { client_id: id },
             }));
             return false;
@@ -130,7 +130,7 @@ const initialize = dispatch => (uploaderConf) => {
       },
       onError(id) {
         dispatch({
-          type: actionTypes.FILES_UPLOAD_PROGRESS_ERROR,
+          type: actionTypes.FILES_UPLOAD_ERROR,
           payload: { client_id: id },
         });
       },

@@ -14,7 +14,14 @@ const store = createStore(
   combined_reducers,
   {
     user: fromJS(preloadedState.user),
-    files: fromJS(preloadedState.files),
+    files: fromJS({
+      ...preloadedState.files,
+      uploading: {
+        files: {
+
+        },
+      },
+    }),
     asyncStatus: fromJS({}),
   },
   global.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),

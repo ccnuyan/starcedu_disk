@@ -27,6 +27,7 @@ export const asyncTypes = [
 
   'FILES_UPLOAD_GET_TOKEN',
   'FILES_UPLOAD_PROGRESS',
+  'FILES_UPLOAD',
   'FILES_UPDATE',
   'FILES_DELETE',
 ];

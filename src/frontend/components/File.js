@@ -31,13 +31,29 @@ class File extends Component {
     }
   }
 
+  componentDidUpdate() {
+    const { file, uploading_files } = this.props;
+    const uploading_state = uploading_files[file.client_id];
+    if (uploading_state) {
+      $(this.progress).progress({
+        value: uploading_state.uploaded,
+        total: uploading_state.total,
+        duration: 100,
+      });
+    }
+  }
+
   render() {
-    const file = this.props.file;
+    const { file, uploading_files } = this.props;
+    const uploading_state = uploading_files[file.client_id];
     return (
       <div className="item" style={ { position: 'relative' } }>
-        <div className="right floated content">
+        {!file.busy ? <div className="right floated content">
           {this.state.status === 'normal' ? <div>
-            <a className="ui green mini icon button" href={ `http://${config.qiniu_bucket}/${file.etag}` } target='blank'>
+            {/* <a className="ui green mini icon button" href={ `http://${config.qiniu_bucket}/${file.etag}` } target='blank'>
+              <i className="ui download icon"></i>
+            </a> */}
+            <a className="ui green mini icon button" href={ `${config.serviceBase}/api/files/access?file_id=${file.id}` } target='blank'>
               <i className="ui download icon"></i>
             </a>
             <a className="ui blue mini icon button" onTouchTap={ () => this.setState({ status: 'rename' }) }>
@@ -61,7 +77,7 @@ class File extends Component {
                 取消
             </div>
             </div> : ''}
-        </div>
+        </div> : ''}
         <i className="huge middle aligned outline image icon"></i>
         {this.state.status === 'rename' ?
           <div className="content">
@@ -78,15 +94,20 @@ class File extends Component {
               <p>Size:{file.size}</p>
             </div>
           </div>}
-        {file.upload_mode ? <div className="ui tiny progress"
-          style={ { position: 'absolute', button: 0 } }
-          data-value={ file.uploaded } data-total={ file.total }
-                            >
-          <div className="bar">
-            <div className="progress"></div>
-          </div>
-          <div className="label"></div>
-        </div> : ''}
+        {(file.busy && uploading_state) ?
+          <div ref={ e => this.progress = e } className="ui tiny indicating progress"
+          style={ { position: 'absolute', bottom: 0, left: 0, right: 0, width: '100%', margin: 0 } }
+          // data-value={ uploading_state.uploaded }
+          // data-total={ uploading_state.total }
+          >
+            <div className="bar">
+              {/* <div className="progress"></div> */}
+            </div>
+          </div> : ''}
+        {(file.busy && !uploading_state) ?
+          <div className="ui active inverted dimmer">
+            <div className="ui loader"></div>
+          </div> : ''}
       </div>
     );
   }
@@ -94,13 +115,15 @@ class File extends Component {
 
 File.propTypes = {
   file: PropTypes.object.isRequired,
+  uploading_files: PropTypes.object.isRequired,
   files_remove: PropTypes.func.isRequired,
   files_update: PropTypes.func.isRequired,
 };
 
 
-const mapStateToProps = () => {
+const mapStateToProps = (state) => {
   return {
+    uploading_files: state.files.toJSON().uploading.files,
   };
 };
 

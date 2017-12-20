@@ -12,6 +12,7 @@ import config from '../config';
 import routes from '../src';
 import tokenAuth from './middleware/tokenAuth';
 import crossDomain from './middleware/crossDomain';
+import utilities from './middleware/utilities';
 
 const app = express();
 
@@ -34,11 +35,10 @@ try {
       extended: true,
     }));
 
-    app.use('~/static/', express.static(path.join(__dirname, '../build/')));
-    app.use('~/static/', express.static(path.join(__dirname, '../public/')));
+    app.use('/static/', express.static(path.join(__dirname, '../build/')));
+    app.use('/static/', express.static(path.join(__dirname, '../public/')));
 
     app.use(crossDomain);
-    app.use(tokenAuth);
 
     app.use((req, res, next) => {
       req.context = { pgPool };
@@ -49,6 +49,12 @@ try {
       app.use(delay(100, 300));
       app.use(morgan('tiny'));
     }
+
+    // ajaxDetector
+    app.use(utilities.ajaxDetector);
+
+    // auth
+    app.use(tokenAuth);
 
     routes(app);
 

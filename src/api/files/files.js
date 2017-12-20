@@ -8,7 +8,10 @@ const create_file = async (req, res) => {
       filename: req.body.filename,
     }, req.context);
 
-    return res.status(201).send(qiniuBusiness.requestUpload(ret.id));
+    return res.status(201).send({
+      ...ret,
+      ...qiniuBusiness.requestUpload(),
+    });
   } catch (err) {
     printError(err, __dirname);
     return res.status(400).send({ success: false });
@@ -21,7 +24,11 @@ const access_file = async (req, res) => {
       file_id: req.query.file_id,
     }, req.context);
 
-    return res.send(qiniuBusiness.getAccessUrl(ret.id));
+    const acessUrlObject = qiniuBusiness.getAccessUrl(ret.etag);
+    if (req.isAjaxRequest) {
+      return res.send(acessUrlObject);
+    }
+    return res.redirect(acessUrlObject.access_url);
   } catch (err) {
     printError(err, __dirname);
     return res.status(400).send({ success: false });
@@ -77,6 +84,7 @@ const update_file_status = async (req, res) => {
     mime: req.body.mime,
     size: req.body.size,
   };
+
   try {
     const ret = await fileServices.update_file_status({
       file_id: req.body.id,
