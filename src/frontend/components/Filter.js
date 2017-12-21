@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-import create from './creator';
+import qiniuActions from '../../store/actions/qiniuFineUploader';
 
 class Filter extends Component {
   componentDidMount = () => {
@@ -82,5 +83,13 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default create(Filter, mapStateToProps);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    files_initialize: ({ button }) => {
+      dispatch(qiniuActions.initialize({ button }));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filter);
 

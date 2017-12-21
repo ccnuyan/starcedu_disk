@@ -32,6 +32,7 @@ export default (state = filesinit, action) => {
     }
 
     case actionTypes.FILES_UPDATE_START: {
+      state = state.setIn(['uploaded', 'files', action.payload.file_id, 'cl_mode'], 'renaming');
       return state;
     }
     case actionTypes.FILES_UPDATE_END: {
@@ -42,14 +43,15 @@ export default (state = filesinit, action) => {
       return state;
     }
 
-    case actionTypes.FILES_DELETE_START: {
+    case actionTypes.FILES_REMOVE_START: {
+      state = state.setIn(['uploaded', 'files', action.payload.file_id, 'cl_mode'], 'removing');
       return state;
     }
-    case actionTypes.FILES_DELETE_END: {
+    case actionTypes.FILES_REMOVE_END: {
       state = state.deleteIn(['uploaded', 'files', action.payload.id]);
       return state;
     }
-    case actionTypes.FILES_DELETE_ERROR: {
+    case actionTypes.FILES_REMOVE_ERROR: {
       return state;
     }
 
@@ -93,6 +95,16 @@ export default (state = filesinit, action) => {
       action.payload.busy = false;
       action.payload.error = true;
       state = state.removeIn(['uploading', 'files', action.payload.client_id]);
+      return state;
+    }
+
+    case actionTypes.FILES_SET_CL_MODE: {
+      state = state.setIn(['uploaded', 'files', action.payload.file_id, 'cl_mode'], action.payload.mode);
+      return state;
+    }
+
+    case actionTypes.FILES_SET_CL_INPUT_TITLE: {
+      state = state.setIn(['uploaded', 'files', action.payload.file_id, 'cl_input_title'], action.payload.title);
       return state;
     }
 

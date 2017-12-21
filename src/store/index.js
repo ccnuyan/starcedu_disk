@@ -1,4 +1,6 @@
-import { combineReducers, createStore } from 'redux';
+import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import { createLogger } from 'redux-logger';
 import { fromJS } from 'immutable';
 import reducers from './reducers';
 
@@ -9,6 +11,11 @@ const preloadedState = window.__PRELOADED_STATE__;
 delete window.__PRELOADED_STATE__;
 
 const combined_reducers = combineReducers(reducers);
+
+// middlewares
+const loggerMiddleware = createLogger();
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   combined_reducers,
@@ -24,7 +31,11 @@ const store = createStore(
     }),
     asyncStatus: fromJS({}),
   },
-  global.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  composeEnhancers(applyMiddleware(
+    thunkMiddleware, // lets us dispatch() functions
+    loggerMiddleware, // neat middleware that logs actions
+  )),
 );
+
 
 export default store;

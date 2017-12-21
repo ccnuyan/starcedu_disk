@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import FileList from './FileList';
-import create from './creator';
 import Filter from './Filter';
 import Header from './Header';
 
 class Disk extends Component {
   render = () => {
     return (
-      <div className="disk">
+      <div className="starc-disk">
         <Header/>
         <div className="ui container">
           <div className="ui basic segment">
@@ -33,5 +33,5 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default create(Disk, mapStateToProps);
+export default connect(mapStateToProps)(Disk);
 

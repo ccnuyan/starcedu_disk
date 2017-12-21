@@ -10,9 +10,9 @@ class Header extends Component {
   render = () => {
     const { user } = this.props;
     return (
-      <div className={ 'ui huge inverted orange fixed menu' } style={ { margin: 0, borderBottom: '1px solid white' } }>
+      <div className={ 'ui huge secondary inverted orange fixed menu' } style={ { margin: 0, borderBottom: '1px solid white' } }>
         <div className="ui container">
-          <a className="active icon item" href='/'>
+          <a className="icon item" href='/'>
             <div className="ui content">
               <i className="icon home"></i>
                 主页
@@ -24,7 +24,7 @@ class Header extends Component {
                 笔记
             </div>
           </a>
-          <a className="icon item" href='/apps/disk'>
+          <a className="active icon item" href='/apps/disk'>
             <div className="ui content">
               <i className="ui cloud icon"></i>
                 网盘
@@ -70,9 +70,4 @@ const mapStateToProps = state => ({
   user: state.user.toJSON().user,
 });
 
-
-const mapDispatchToProps = {
-
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps)(Header);

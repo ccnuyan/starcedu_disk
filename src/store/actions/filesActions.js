@@ -8,44 +8,47 @@ const base = config.serviceBase;
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-useless-return */
 
-const get_uploaded = dispatch => () => {
-  const payload = {
-    method: 'GET',
-    credentials: 'include',
-    headers: utils.getHeaders(),
-  };
+const get_uploaded = () => {
+  (dispatch) => {
+    const payload = {
+      method: 'GET',
+      credentials: 'include',
+      headers: utils.getHeaders(),
+    };
 
-  dispatch(fill({ type: actionTypes.FILES_GET_UPLOADED_START }));
+    dispatch(fill({ type: actionTypes.FILES_GET_UPLOADED_START }));
 
-  fetch(`${base}/api/files/uploaded`, payload)
+    fetch(`${base}/api/files/uploaded`, payload)
     .then(res => res.json())
     .then((ret) => {
-      dispatch(fill({ type: actionTypes.FILES_GET_UPLOADED_END, payload: ret }));
+      dispatch(fill({ type: actionTypes.FILES_GET_UPLOADED_END, payload: ret.data }));
       return;
     }).catch(() => {
       dispatch(fill({ type: actionTypes.FILES_GET_UPLOADED_ERROR }));
       return;
     });
+  };
 };
 
-const update = dispatch => (fileinfo) => {
-  const payload = {
-    method: 'PUT',
-    credentials: 'include',
-    headers: utils.getHeaders(),
-    body: JSON.stringify({
-      file_id: fileinfo.id,
-      title: fileinfo.title,
-    }),
-  };
+const update = ({ file_id, title }) => {
+  return (dispatch) => {
+    const payload = {
+      method: 'PUT',
+      credentials: 'include',
+      headers: utils.getHeaders(),
+      body: JSON.stringify({
+        file_id,
+        title,
+      }),
+    };
 
-  dispatch(fill({ type: actionTypes.FILES_UPDATE_START }));
+    dispatch(fill({ type: actionTypes.FILES_UPDATE_START, payload: { file_id, title } }));
 
-  fetch(`${base}/api/files`, payload)
+    fetch(`${base}/api/files`, payload)
     .then(res => res.json())
     .then((ret) => {
-      if (ret.success) {
-        dispatch(fill({ type: actionTypes.FILES_UPDATE_END, payload: ret }));
+      if (ret.code === 0) {
+        dispatch(fill({ type: actionTypes.FILES_UPDATE_END, payload: ret.data }));
       } else {
         dispatch(fill({ type: actionTypes.FILES_UPDATE_ERROR }));
       }
@@ -54,34 +57,54 @@ const update = dispatch => (fileinfo) => {
       dispatch(fill({ type: actionTypes.FILES_UPDATE_ERROR }));
       return;
     });
+  };
 };
 
-const remove = dispatch => (fileinfo) => {
-  const payload = {
-    method: 'DELETE',
-    credentials: 'include',
-    headers: utils.getHeaders(),
-    body: JSON.stringify({ file_id: fileinfo.id }),
-  };
+const remove = ({ file_id }) => {
+  return (dispatch) => {
+    const payload = {
+      method: 'DELETE',
+      credentials: 'include',
+      headers: utils.getHeaders(),
+      body: JSON.stringify({ file_id }),
+    };
 
-  dispatch(fill({ type: actionTypes.FILES_DELETE_START }));
+    dispatch(fill({ type: actionTypes.FILES_REMOVE_START, payload: { file_id } }));
 
-  fetch(`${base}/api/files`, payload)
+    fetch(`${base}/api/files`, payload)
     .then(res => res.json())
     .then((ret) => {
-      if (ret.success) {
-        dispatch(fill({ type: actionTypes.FILES_DELETE_END, payload: ret }));
+      if (ret.code === 0) {
+        dispatch(fill({ type: actionTypes.FILES_REMOVE_END, payload: ret.data }));
       } else {
-        dispatch(fill({ type: actionTypes.FILES_DELETE_ERROR }));
+        dispatch(fill({ type: actionTypes.FILES_REMOVE_ERROR }));
       }
       return;
     }).catch(() => {
       return;
     });
+  };
 };
+
+const set_cl_mode = (dispatch, { file_id, mode }) => {
+  dispatch({
+    type: actionTypes.FILES_SET_CL_MODE,
+    payload: { file_id, mode },
+  });
+};
+
+const set_cl_input_title = (dispatch, { file_id, title }) => {
+  dispatch({
+    type: actionTypes.FILES_SET_CL_INPUT_TITLE,
+    payload: { file_id, title },
+  });
+};
+
 
 export default {
   get_uploaded,
   update,
   remove,
+  set_cl_mode,
+  set_cl_input_title,
 };
