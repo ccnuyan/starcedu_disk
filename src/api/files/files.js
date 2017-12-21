@@ -26,7 +26,7 @@ const access_file = async (req, res) => {
 
     if (req.user.id !== ret.uploader_id) {
       return ret.status(401).send({
-        code: 0,
+        code: 401,
         message: 'unauthorized',
       });
     }
@@ -50,7 +50,7 @@ const require_file = async (req, res) => {
 
     if (req.user.id !== ret.uploader_id) {
       return ret.status(401).send({
-        code: 0,
+        code: 401,
         message: 'unauthorized',
       });
     }
