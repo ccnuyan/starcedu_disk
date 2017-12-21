@@ -1,9 +1,0 @@
-{
-  "app": {
-    "js": "//127.0.0.1:18080/assets/app.js",
-    "css": "//127.0.0.1:18080/assets/app.css"
-  },
-  "vendor": {
-    "js": "//127.0.0.1:18080/assets/vendor.js"
-  }
-}
