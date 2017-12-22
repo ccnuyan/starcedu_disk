@@ -9,8 +9,8 @@ import { pg } from '../connector';
 const versionRoot = pacakgeJson.version.replace(/\./g, '-');
 const sourceDir = path.join(__dirname, '../sql/', versionRoot);
 
-const loadFiles = () => {
-  const globPattern = path.join(sourceDir, '**/*.sql');
+const loadFiles = (dir) => {
+  const globPattern = path.join(path.join(sourceDir, dir || ''), '**/*.sql');
 
   // use nosort to ensure that init.sql is loaded first
   const files = glob.sync(globPattern, {
@@ -31,16 +31,16 @@ const loadFiles = () => {
 };
 
 
-const decideSqlFile = () => {
+const decideSqlFile = (dir) => {
   const buildDir = path.join(__dirname, '../build');
-  const fileName = `${versionRoot}.sql`;
+  const fileName = dir ? `${dir}-${versionRoot}.sql` : `${versionRoot}.sql`;
   return path.join(buildDir, fileName);
 };
 
-const readSql = () => {
-  const sqlBits = loadFiles();
+const readSql = (dir) => {
+  const sqlBits = loadFiles(dir);
   // write it to file
-  const sqlFile = decideSqlFile();
+  const sqlFile = decideSqlFile(dir);
   fs.writeFileSync(sqlFile, sqlBits);
   return sqlBits;
 };

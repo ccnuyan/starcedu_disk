@@ -1,6 +1,8 @@
 import fileServices from '../services/fileServices';
 import qiniuBusiness from './qiniuBusiness';
 
+import utils from '../../utils';
+
 const create_file = async (req, res) => {
   const ret = await fileServices.create_file({
     uploader_id: req.user.id,
@@ -23,7 +25,7 @@ const access_file = async (req, res) => {
   }, req.context);
 
   if (req.user.id !== ret.uploader_id) {
-    return ret.status(401).send({
+    return req.status(401).send({
       code: 401,
       message: 'unauthorized',
     });
@@ -46,7 +48,7 @@ const require_file = async (req, res) => {
   }, req.context);
 
   if (req.user.id !== ret.uploader_id) {
-    return ret.status(401).send({
+    return req.status(401).send({
       code: 401,
       message: 'unauthorized',
     });
@@ -73,6 +75,10 @@ const update_file_title = async (req, res) => {
   const query = {
     title: req.body.title,
   };
+
+  if (utils.getFileExtension(req.file.filename) !== utils.getFileExtension(query.title)) {
+    query.title = `${query.title}.${utils.getFileExtension(req.file.filename)}`;
+  }
 
   const ret = await fileServices.update_file_title({
     uploader_id: req.user.id,

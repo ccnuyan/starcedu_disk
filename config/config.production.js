@@ -33,7 +33,6 @@ export default {
     stylesheets: {
       normalize: '//cdn.bootcss.com/normalize/6.0.0/normalize.min.css',
       semantic: '/static/semantic/semantic.min.css',
-      main: '/static/main.css',
     },
     scripts: {
       jquery: '//cdn.bootcss.com/jquery/3.2.1/jquery.min.js',

@@ -10,7 +10,7 @@ class Header extends Component {
   render = () => {
     const { user } = this.props;
     return (
-      <div className={ 'ui huge secondary inverted orange fixed menu' } style={ { margin: 0, borderBottom: '1px solid white' } }>
+      <div className={ 'ui huge secondary inverted red fixed menu' } style={ { margin: 0, borderBottom: '1px solid white' } }>
         <div className="ui container">
           <a className="icon item" href='/'>
             <div className="ui content">

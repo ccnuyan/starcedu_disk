@@ -24,8 +24,10 @@ export default {
   pg: {
     user: 'postgres',
     database: 'postgres',
-    host: 'localhost',
+    host: process.env.DBHOST ? process.env.DBHOST : 'localhost',
     port: process.env.DBPORT ? process.env.DBPORT : 5432,
+    // host: '192.168.1.60',
+    // port: 6543,
     max: 10,
     idleTimeoutMillis: 30000,
   },

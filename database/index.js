@@ -15,19 +15,20 @@ program
   });
 
 program
-  .command('functions-dev')
-  .description('Build the functions for our project')
-  .action(() => {
-    console.log('installing now...');
-    developer.install('05-functions');
-  });
-
-program
   .command('build')
   .description('Build the sql file for our project')
   .action(() => {
     console.log('building now...');
     builder.readSql();
+    console.log('sql script file created');
+  });
+
+program
+  .command('functions-build')
+  .description('Build the sql file for our project')
+  .action(() => {
+    console.log('building now...');
+    builder.readSql('05-functions');
     console.log('sql script file created');
   });
 
@@ -39,6 +40,15 @@ program
     await builder.install();
     console.log('done');
   });
+
+program
+  .command('functions-dev')
+  .description('Build the functions for our project')
+  .action(() => {
+    console.log('installing now...');
+    developer.install('05-functions');
+  });
+
 
 /* eslint-disable no-console */
 program.parse(process.argv);
