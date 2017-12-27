@@ -1,7 +1,8 @@
 export default {
   mode: 'development',
-  domain: 'www.syncollege.com',
+  title: 'starC教育 网盘-dev',
   port: 18000,
+  domain: 'www.syncollege.com',
   serviceBase: '/apps/disk',
   qiniu_bucket: '7xt1pi.com1.z0.glb.clouddn.com',
   qiniu: {
@@ -26,8 +27,6 @@ export default {
     database: 'postgres',
     host: process.env.DBHOST ? process.env.DBHOST : 'localhost',
     port: process.env.DBPORT ? process.env.DBPORT : 5432,
-    // host: '192.168.1.60',
-    // port: 6543,
     max: 10,
     idleTimeoutMillis: 30000,
   },
@@ -44,5 +43,4 @@ export default {
       semantic: '/static/semantic/semantic.min.js',
     },
   },
-  title: 'starcedu_disk dev',
 };

@@ -7,15 +7,14 @@ const exist = async (req, res, next) => {
       file_id,
     }, req.context);
     if (!ret.id) {
-      res.send({
+      return res.send({
         code: 400,
         message: 'specific file not exist',
         data: ret,
       });
-    } else {
-      req.file = ret;
-      next();
     }
+    req.file = ret;
+    next();
   } else {
     res.send({
       code: 400,

@@ -8,4 +8,7 @@ export default {
   query: async (text, params) => {
     return pg.query(text, params);
   },
+  end: async () => {
+    return pg.end();
+  },
 };

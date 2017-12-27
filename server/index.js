@@ -44,7 +44,7 @@ app.use(tokenAuth);
 
 routes(app);
 
-app.listen(PORT, (err) => {
+const server = app.listen(PORT, (err) => {
   if (err) {
     printError(err, __filename);
   } else {
@@ -52,5 +52,5 @@ app.listen(PORT, (err) => {
   }
 });
 
-export default app;
+export default server;
 
