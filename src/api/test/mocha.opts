@@ -1,3 +1,5 @@
---compilers js:babel-core/register,babel-polyfill
---watch 
+--require=env-test
+--require=babel-core/register
+--require=babel-polyfill
+--watch
 --watch-extensions js,sql

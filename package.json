@@ -12,12 +12,12 @@
     "db-dev": "nodemon --config nodemon/nodemon.database-dev.json --delay 1000ms",
     "db-functions-dev": "nodemon --config nodemon/nodemon.database-functions-dev.json --delay 1000ms",
     "db-install": "babel-node ./database/index install",
-    "db-test": "mocha --opts ./database/test/mocha.opts",
-    "db-fulltest": "mocha --opts ./database/test/mocha.opts ./database/test/*.test.js",
+    "db-test": "mocha --opts ./database/test/mocha.opts ./database/test/**/*.spec.js",
     "wp-dev": "cross-env NODE_ENV=development && webpack-dev-server --host 127.0.0.1",
     "wp-build": "cross-env NODE_ENV=production && webpack --config=webpack.build-config.js",
     "wp-build-dev": "cross-env NODE_ENV=development && webpack --config=webpack.build-dev-config.js",
-    "server-dev": "nodemon --config nodemon/nodemon.server.json --delay 1000ms"
+    "server-dev": "nodemon --config nodemon/nodemon.server.json --delay 1000ms",
+    "api-test": "mocha --opts ./src/api/test/mocha.opts ./src/api/test/**/*.spec.js"
   },
   "pre-commit": [
     "eslint"
@@ -57,6 +57,7 @@
     "babel-polyfill": "^6.26.0",
     "bluebird": "^3.5.0",
     "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
     "css-loader": "^0.28.0",
     "env-test": "^1.0.0",
     "eslint": "^3.19.0",
@@ -148,8 +149,10 @@
       "$": true,
       "printError": true,
       "printMessage": true,
-      "plupload": true,
-      "Qiniu": true
+      "Qiniu": true,
+      "chai": true,
+      "expect": true,
+      "should": true
     },
     "rules": {
       "camelcase": 0,

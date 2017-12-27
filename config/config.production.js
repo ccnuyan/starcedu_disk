@@ -1,7 +1,8 @@
 export default {
-  mode: 'development',
-  domain: 'www.syncollege.com',
+  mode: 'production',
+  title: 'starC教育 网盘',
   port: 18000,
+  domain: 'www.syncollege.com',
   serviceBase: '/apps/disk',
   qiniu_bucket: '7xt1pi.com1.z0.glb.clouddn.com',
   qiniu: {
@@ -10,7 +11,7 @@ export default {
     ak: 'JK2nEgwnvAoWh4e7hWyUX3Iuc6fs8-6vL5xNu-kq',
     sk: 'LRKdhh_0T4l_w6q1rbA2T-rNolTogMMjXihigG8x',
     callbackBase: 'http://www.syncollege.com/',
-    url: 'http://7xt1pi.com1.z0.glb.clouddn.com/',
+    url: 'http://7xt1pi.com1.z0.glb.clouddn.com',
   },
   dbname: 'starcedu_disk',
   auth: {
@@ -42,5 +43,4 @@ export default {
       semantic: '/static/semantic/semantic.min.js',
     },
   },
-  title: 'Starcedu 网盘',
 };
