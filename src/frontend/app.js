@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import './style.scss';
+import './style.css';
 import './includes';
 
 import Disk from './components/Disk';

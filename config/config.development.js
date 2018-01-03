@@ -4,16 +4,6 @@ export default {
   port: 18000,
   domain: 'www.syncollege.com',
   serviceBase: '/apps/disk',
-  qiniu_bucket: '7xt1pi.com1.z0.glb.clouddn.com',
-  qiniu: {
-    bucket: 'test',
-    mode: 'direct',
-    ak: 'JK2nEgwnvAoWh4e7hWyUX3Iuc6fs8-6vL5xNu-kq',
-    sk: 'LRKdhh_0T4l_w6q1rbA2T-rNolTogMMjXihigG8x',
-    callbackBase: 'http://www.syncollege.com/',
-    url: 'http://7xt1pi.com1.z0.glb.clouddn.com',
-  },
-  dbname: 'starcedu_disk',
   auth: {
     jwt: {
       secret: '12345678',
@@ -22,13 +12,24 @@ export default {
       name: 'authorization',
     },
   },
+  dbname: 'starcedu_disk',
   pg: {
-    user: 'postgres',
-    database: 'postgres',
+    user: process.env.DBUSER ? process.env.DBUSER : 'postgres',
+    database: process.env.DBDATABASE ? process.env.DBDATABASE : 'postgres',
+    password: process.env.DBPASSWORD ? process.env.DBPASSWORD : '',
     host: process.env.DBHOST ? process.env.DBHOST : 'localhost',
     port: process.env.DBPORT ? process.env.DBPORT : 5432,
     max: 10,
     idleTimeoutMillis: 30000,
+  },
+  qiniu_bucket: '7xt1pi.com1.z0.glb.clouddn.com',
+  qiniu: {
+    bucket: 'test',
+    mode: 'direct',
+    ak: 'JK2nEgwnvAoWh4e7hWyUX3Iuc6fs8-6vL5xNu-kq',
+    sk: 'LRKdhh_0T4l_w6q1rbA2T-rNolTogMMjXihigG8x',
+    callbackBase: 'http://www.syncollege.com/',
+    url: 'http://7xt1pi.com1.z0.glb.clouddn.com',
   },
   resources: {
     stylesheets: {
