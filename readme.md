@@ -1,3 +1,5 @@
+[![Build Status](https://www.travis-ci.org/ccnuyan/starcedu_disk.svg?branch=master)](https://www.travis-ci.org/ccnuyan/starcedu_disk)
+
 # API
 
 参考开源项目 [fineuploader](https://fineuploader.com/)

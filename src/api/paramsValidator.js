@@ -39,7 +39,7 @@ const validate = (payload, nonNullParamsArray) => {
 
   nonNullParamsArray.every((k) => {
     if (!validationRules[k]) {
-      console.log(`no validation rule for non-null parameter ${k} in \n)${JSON.stringify(payload, null, 2)}`);
+      console.log(`no validation rule for non-null parameter ${k} in \n)${JSON.stringify(payload, null, 2)}`); // eslint-disable-line
     } else if (!payload[k]) {
       ret.code = validationRules[k].emptyCode;
       ret.message = `${k} empty`;

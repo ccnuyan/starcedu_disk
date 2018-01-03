@@ -1,33 +1,8 @@
 build/*
+database/build/*.sql
+!database/build/readme.md
 
-# Created by https://www.gitignore.io/api/node,macos,visualstudiocode
-
-### macOS ###
-*.DS_Store
-.AppleDouble
-.LSOverride
-
-# Icon must end with two \r
-Icon
-
-# Thumbnails
-._*
-
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-.com.apple.timemachine.donotpresent
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
+# Created by https://www.gitignore.io/api/node,windows,visualstudiocode
 
 ### Node ###
 # Logs
@@ -86,12 +61,6 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
-# Yarn Lock file
-yarn.lock
-
-# package.json Lock file
-package-lock.json
-
 # dotenv environment variables file
 .env
 
@@ -102,5 +71,27 @@ package-lock.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+.history
 
-# End of https://www.gitignore.io/api/node,macos,visualstudiocode
+### Windows ###
+# Windows thumbnail cache files
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# End of https://www.gitignore.io/api/node,windows,visualstudiocode

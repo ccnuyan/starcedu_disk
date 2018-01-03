@@ -10,7 +10,7 @@ const getFileExtension = (filename) => {
 };
 
 const escapeFileName = (filename) => {
-  return filename.replace(/[\:,\/,\>,\<,\",\\,\|,\?,\*"]/g, '_');
+  return filename.replace(/[:,/,>,<,",\\,|,?,*"]/g, '_');
 };
 
 export default {
