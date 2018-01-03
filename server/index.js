@@ -30,14 +30,16 @@ app.use(bodyParser.urlencoded({
 app.use('/static/', express.static(path.join(__dirname, '../build/')));
 app.use('/static/', express.static(path.join(__dirname, '../public/')));
 
+if (config.log) {
+  app.use(morgan(config.log));
+}
+if (config.maxDelay) {
+  app.use(delay(0, config.maxDelay));
+}
+
 // custom middlewares
 app.use(utilities.ajaxDetector);
 app.use(crossDomain);
-
-if (config.mode === 'development') {
-  app.use(delay(100, 300));
-  app.use(morgan('tiny'));
-}
 
 // auth
 app.use(tokenAuth);

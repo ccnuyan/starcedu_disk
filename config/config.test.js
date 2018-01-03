@@ -4,6 +4,8 @@ export default {
   port: 18001,
   domain: 'www.syncollege.com',
   serviceBase: '/apps/disk',
+  log: false,
+  maxDelay: 0,
   auth: {
     jwt: {
       secret: '12345678',
