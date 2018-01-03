@@ -12,12 +12,14 @@
     "db-dev": "nodemon --config nodemon/nodemon.database-dev.json --delay 1000ms",
     "db-functions-dev": "nodemon --config nodemon/nodemon.database-functions-dev.json --delay 1000ms",
     "db-install": "babel-node ./database/index install",
-    "db-test": "mocha --opts ./database/test/mocha.opts ./database/test/**/*.spec.js",
     "wp-dev": "cross-env NODE_ENV=development && webpack-dev-server --host 127.0.0.1",
     "wp-build": "cross-env NODE_ENV=production && webpack --config=webpack.build-config.js",
     "wp-build-dev": "cross-env NODE_ENV=development && webpack --config=webpack.build-dev-config.js",
     "server-dev": "nodemon --config nodemon/nodemon.server.json --delay 1000ms",
-    "api-test": "mocha --opts ./src/api/test/mocha.opts ./src/api/test/**/*.spec.js"
+    "db-test": "mocha --opts ./mocha.opts ./database/test/**/*.spec.js",
+    "api-test": "mocha --opts ./mocha.opts ./src/api/test/**/*.spec.js",
+    "test": "mocha --opts ./mocha.opts ./src/api/test/**/*.spec.js ./database/test/**/*.spec.js",
+    "build-install-test": "npm run db-build && npm run db-install && npm run test"
   },
   "pre-commit": [
     "eslint"
@@ -75,7 +77,6 @@
     "immutable": "^3.8.1",
     "lint-staged": "^3.4.0",
     "markdown-loader": "^2.0.0",
-    "node-sass": "^4.7.2",
     "pixrem": "^3.0.2",
     "pleeease-filters": "^3.0.1",
     "postcss-calc": "^5.3.1",
@@ -104,7 +105,6 @@
     "redux": "^3.7.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
-    "sass-loader": "^6.0.3",
     "style-loader": "^0.16.1",
     "supertest": "^3.0.0",
     "uglifyjs-webpack-plugin": "^0.4.6",
