@@ -25,7 +25,7 @@ pipeline {
     }
     stage('run test') {
       steps {
-        sh 'docker run -rm --name disktest -i --link database-test:database-test starcedu/disk:test'
+        sh 'docker run --rm --name disktest -i --link database-test:database-test starcedu/disk:test'
       }
     }
     stage('build prod') {
