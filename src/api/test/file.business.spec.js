@@ -10,7 +10,7 @@ const callbackbody = {
   size: 123,
 };
 
-describe('FILE BUSINESS', function () {
+describe('FILE BUSINESS', function () { // eslint-disable-line
   this.filename = 'filename';
   before(() => {
     return pgPool.query('delete from starcedu_disk.files'); // eslint-disable-line

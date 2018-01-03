@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import config from '../../config';
-import assets from '../../build/assets.json';
+import assets from '../../build/assets.json'; // eslint-disable-line
 
 let rawIndexHTML = fs.readFileSync(path.join(__dirname, './index.html'), 'utf-8');
 

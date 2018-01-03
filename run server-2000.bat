@@ -1,1 +1,0 @@
-npm run wp-build-dev && set port=2000 && set dbport=6543 && npm start
