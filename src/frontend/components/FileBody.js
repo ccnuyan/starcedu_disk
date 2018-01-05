@@ -40,7 +40,7 @@ class FileBody extends Component {
     return (
       <div className="content">
         <a className="small header">{name_to_display}</a>
-        <div className="small meta">
+        <div className="small extra meta">
           <span>{file.uploaded_at ? file.uploaded_at.substring(0, 10) : ''}</span>
           <span className="right floated time">
             <p>{ uploading_state ?

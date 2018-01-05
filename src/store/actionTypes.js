@@ -4,6 +4,8 @@ const types = {
 export const syncTypes = [
   'FILES_SET_CL_MODE',
   'FILES_SET_CL_INPUT_TITLE',
+  'FILES_SET_FILTER_ALL',
+  'FILES_SET_FILTER_ONE',
 ];
 export const asyncTypes = [
   'FILES_GET_UPLOADED',

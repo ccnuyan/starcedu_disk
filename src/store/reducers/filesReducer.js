@@ -2,6 +2,10 @@ import { fromJS, Map } from 'immutable';
 import actionTypes from '../actionTypes';
 
 const filesinit = fromJS({
+  filter: {
+    all: true,
+    filters: {},
+  },
   uploaded: {
     files: {
     },
@@ -105,6 +109,25 @@ export default (state = filesinit, action) => {
 
     case actionTypes.FILES_SET_CL_INPUT_TITLE: {
       state = state.setIn(['uploaded', 'files', action.payload.file_id, 'cl_input_title'], action.payload.title);
+      return state;
+    }
+
+    case actionTypes.FILES_SET_FILTER_ALL: {
+      state = state.setIn(['filter', 'all'], true);
+      state = state.setIn(['filter', 'filters'], fromJS({}));
+      return state;
+    }
+
+    case actionTypes.FILES_SET_FILTER_ONE: {
+      Object.keys(action.payload).forEach((k) => {
+        if (action.payload[k]) {
+          state = state.setIn(['filter', 'all'], false);
+          state = state.setIn(['filter', 'filters'], fromJS({}));
+          state = state.setIn(['filter', 'filters', k], true);
+        } else {
+          state = state.setIn(['filter', 'filters', k], false);
+        }
+      });
       return state;
     }
 
