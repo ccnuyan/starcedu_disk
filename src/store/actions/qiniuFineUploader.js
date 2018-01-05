@@ -77,7 +77,7 @@ const initialize = (uploaderConf) => {
           }));
         },
         onComplete: (id, name, responseJSON) => {
-          if (config.mode === 'development') {
+          if (config.upload_callback) {
             const payload = {
               method: 'POST',
               credentials: 'include',
