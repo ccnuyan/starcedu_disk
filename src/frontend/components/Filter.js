@@ -12,12 +12,12 @@ class Filter extends Component {
   }
   render = () => {
     return (
-      <div className="ui compact stackable icon menu">
+      <div className={ 'ui huge secondary bottom fixed menu' } style={ { margin: 0, borderTop: '1px solid #0E6EB8', background: 'white' } }>
         <a className="item" ref={ e => this.uploadButton = e }>
           <i className="upload icon"></i>
           <div className="content">上传文件</div>
         </a>
-        {/* <a className="active item">
+        <a className="active item">
           全部
         </a>
         <a className="item">
@@ -60,14 +60,14 @@ class Filter extends Component {
           </div>
           <div className="results"></div>
         </div>
-        <ui className="right inverted menu">
+        <div className="ui right orange menu">
           <a className="right item">
             <i className="grid layout icon"></i>
           </a>
           <a className="right item">
             <i className="list layout icon"></i>
           </a>
-        </ui> */}
+        </div>
       </div>
     );
   }

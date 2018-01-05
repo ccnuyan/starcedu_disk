@@ -22,7 +22,7 @@ class File extends Component {
     const { file, uploading_files } = this.props;
     const uploading_state = uploading_files[file.client_id];
     return (
-      <li className="item" style={ { position: 'relative' } }>
+      <div className="ui tiny card" style={ { position: 'relative' } }>
         <FileOptions file={ this.props.file } cl_mode={ this.props.file.cl_mode }/>
         <FileIcon file={ this.props.file }/>
         <FileBody file={ this.props.file }/>
@@ -35,7 +35,7 @@ class File extends Component {
           <div className="ui active inverted dimmer">
             <div className="ui loader"></div>
           </div> : ''}
-      </li>
+      </div>
     );
   }
 }

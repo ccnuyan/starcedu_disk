@@ -17,13 +17,10 @@ class Disk extends Component {
         {
           style => <div className="starc-disk" style={ style }>
             <Header/>
-            <div className="ui container">
-              <div className="ui basic segment">
-                <Filter/>
-                <div className="ui hidden divider"></div>
-                <FileList />
-              </div>
+            <div className="ui files-container">
+              <FileList />
             </div>
+            <Filter/>
           </div>
         }
       </Motion>

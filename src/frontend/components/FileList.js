@@ -19,15 +19,10 @@ class FileList extends Component {
     const sortedFiles = _.orderBy(files, ['busy', 'uploaded_at'], ['asc', 'desc']);
 
     return (
-      <div>
-        <div ref={ e => this.uploaderContainerDom = e }></div>
-        <div ref={ e => this.filelist = e }>
-          <ul className="ui ordered divided selection list">
-            {sortedFiles.map((file) => {
-              return <File key={ file.id } file={ file }/>;
-            })}
-          </ul>
-        </div>
+      <div className="ui link eight doubling stackable cards">
+        {sortedFiles.map((file) => {
+          return <File key={ file.id } file={ file }/>;
+        })}
       </div>
     );
   }
