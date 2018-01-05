@@ -21,11 +21,12 @@ class File extends Component {
   render() {
     const { file, uploading_files } = this.props;
     const uploading_state = uploading_files[file.client_id];
+
     return (
-      <div className="ui tiny card" style={ { position: 'relative' } }>
+      <div className="ui card" style={ { position: 'relative', minHeight: '150px', minWidth: '170px' } }>
+        <FileBody file={ this.props.file }/>
         <FileOptions file={ this.props.file } cl_mode={ this.props.file.cl_mode }/>
         <FileIcon file={ this.props.file }/>
-        <FileBody file={ this.props.file }/>
         {(file.busy && uploading_state) ?
           <div ref={ e => this.progress = e } className="ui tiny indicating progress"
           style={ { position: 'absolute', bottom: 0, left: 0, right: 0, width: '100%', margin: 0 } }

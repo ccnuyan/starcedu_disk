@@ -14,7 +14,7 @@ class Filter extends Component {
     return (
       <div className={ 'ui huge secondary bottom fixed menu' } style={ { margin: 0, borderTop: '1px solid #0E6EB8', background: 'white' } }>
         <a className="item" ref={ e => this.uploadButton = e }>
-          <i className="upload icon"></i>
+          <i className="green upload icon"></i>
           <div className="content">上传文件</div>
         </a>
         <a className="active item">

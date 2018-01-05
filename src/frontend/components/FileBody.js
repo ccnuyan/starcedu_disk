@@ -31,16 +31,23 @@ class FileBody extends Component {
       </div>);
     }
 
+    let name_to_display = file.title || file.filename || file.name;
+
+    if (name_to_display.length > 19) {
+      name_to_display = `${name_to_display.substring(0, 16)}...`;
+    }
+
     return (
       <div className="content">
+        <a className="small header">{name_to_display}</a>
         <div className="small meta">
-          <span className="date cinema">{file.uploaded_at ? file.uploaded_at.substring(0, 10) : ''}</span>
-        </div>
-        <a className="small header" >{file.title || file.filename || file.name}</a>
-        <div className="small description">
-          <p>文件大小:{ uploading_state ?
-        (`${fileSize(uploading_state.uploaded).human('si')}/${fileSize(uploading_state.total).human('si')}`) :
-        (`${fileSize(file.size).human('si')}`)}</p>
+          <span>{file.uploaded_at ? file.uploaded_at.substring(0, 10) : ''}</span>
+          <span className="right floated time">
+            <p>{ uploading_state ?
+              (`${fileSize(uploading_state.uploaded).human('si')}/${fileSize(uploading_state.total).human('si')}`) :
+              (`${fileSize(file.size).human('si')}`)}
+            </p>
+          </span>
         </div>
       </div>);
   }

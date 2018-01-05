@@ -1,9 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const FileIcon = () => {
+import mimeMap from './mimeMap';
+
+const FileIcon = (props) => {
+  const fileIcon = mimeMap[props.file.mime] || 'file';
   return (
-    <i className="huge middle aligned outline image icon"></i>
+    <div className="image file-type-icon">
+      <i className={ `huge middle aligned ${fileIcon} icon` }></i>
+    </div>
   );
 };
 

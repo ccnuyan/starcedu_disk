@@ -19,7 +19,7 @@ class FileList extends Component {
     const sortedFiles = _.orderBy(files, ['busy', 'uploaded_at'], ['asc', 'desc']);
 
     return (
-      <div className="ui link eight doubling stackable cards">
+      <div className="ui link eight doubling cards">
         {sortedFiles.map((file) => {
           return <File key={ file.id } file={ file }/>;
         })}
