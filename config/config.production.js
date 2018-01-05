@@ -7,11 +7,11 @@ export default {
   log: process.env.APP_LOG || false,
   maxDelay: process.env.APP_MAX_DELAY || 0,
   auth: {
-    jwt: {
+    session: {
       secret: '12345678',
     },
-    cookie: {
-      name: 'authorization',
+    jwt: {
+      secret: '12345678',
     },
   },
   dbname: 'starcedu_disk',
@@ -32,6 +32,10 @@ export default {
     sk: 'LRKdhh_0T4l_w6q1rbA2T-rNolTogMMjXihigG8x',
     callbackBase: 'http://www.syncollege.com/',
     url: 'http://7xt1pi.com1.z0.glb.clouddn.com',
+  },
+  redisSessionServer: {
+    host: 'localhost',
+    port: 6379,
   },
   resources: {
     stylesheets: {

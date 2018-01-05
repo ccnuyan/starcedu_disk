@@ -1,12 +1,16 @@
 /*
-  this middleware won't interupt the anonymous accessingß
+  this middleware won't interupt the anonymous accessing
 */
 
 import { verify } from '../../src/services/tokenServices';
 
 export default (req, res, next) => {
-  // no authorization token: bypass
   let token = '';
+
+  if (req.session.user) {
+    req.user = req.session.user;
+    return next();
+  }
 
   if (req.headers.authorization) {
     const breaks = req.headers.authorization.split(' ');

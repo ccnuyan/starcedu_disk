@@ -7,11 +7,11 @@ export default {
   log: false,
   maxDelay: 0,
   auth: {
-    jwt: {
+    session: {
       secret: '12345678',
     },
-    cookie: {
-      name: 'authorization',
+    jwt: {
+      secret: '12345678',
     },
   },
   dbname: 'starcedu_disk',
