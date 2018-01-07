@@ -60,17 +60,6 @@ body{
     width:100%;
 }
 
-.filter-item-statistic{
-    background: #6f6f6f;
-    color:white;
-    border-radius: 5px !important;
-    padding:1px 3px;
-    position: absolute;
-    right:0;
-    top:0;
-    font-size: 70%;
-}
-
 .file-options.dimmer{
     background: transparent;
 }

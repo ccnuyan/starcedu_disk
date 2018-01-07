@@ -39,7 +39,7 @@ class Filter extends Component {
           <i className="green upload icon"></i>
         </a>
         {files.length > 0 ? <a onTouchTap={ this.props.set_filter_all } className={ `${filter.all ? 'active' : ''} item` } data-content="显示所有文件">
-          <div className="filter-item-statistic">{files.length}</div>
+          <div className={ 'floating ui black label' }>{files.length}</div>
           <i className="black folder icon"></i>
         </a> : ''}
         {
@@ -50,7 +50,7 @@ class Filter extends Component {
               data-content={ mimeMap[k].tip }
               onTouchTap={ this.onFilterSelected }
               >
-                <div className="filter-item-statistic">{filterStatistics[k]}</div>
+                <div className={ `floating ui ${mimeMap[k].color} label` }>{filterStatistics[k]}</div>
                 <i className={ `${mimeMap[k].color} ${mimeMap[k].className} icon` }></i>
               </a> : ''))
         }
