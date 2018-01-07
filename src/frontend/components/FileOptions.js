@@ -80,7 +80,7 @@ class FileOptions extends Component {
     return (
       <div className='ui dimmer file-options'>
         <div className="extra content">
-          <div className="ui three buttons">
+          <div className="ui buttons">
             <a className="ui green mini icon button" href={ `${config.serviceBase}/api/files/access?file_id=${file.id}` }>
               <i className="ui download icon"></i>
             </a>

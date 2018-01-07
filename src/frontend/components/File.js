@@ -7,6 +7,8 @@ import FileIcon from './FileIcon';
 import FileOptions from './FileOptions';
 import FileBody from './FileBody';
 
+import mimeMap from './mimeMap';
+
 class File extends Component {
   componentDidUpdate() {
     const { file, uploading_files } = this.props;
@@ -24,19 +26,29 @@ class File extends Component {
     const { file, uploading_files } = this.props;
     const uploading_state = uploading_files[file.client_id];
 
+    let fileConf = {
+      color: 'grey',
+      className: 'file',
+    };
+    Object.keys(mimeMap).every((k) => {
+      if (mimeMap[k].mimes.indexOf(this.props.file.mime) >= 0) {
+        fileConf = mimeMap[k];
+        return false;
+      }
+      return true;
+    });
+
     return (
       <Motion defaultStyle={ { opacity: 0 } } style={ { opacity: spring(1, { stiffness: 90, damping: 40 }) } }>
         {style =>
-          <div className="ui file-each dimmable card"
+          <div className={ `ui file-each dimmable ${fileConf.color} card` }
           style={ {
             ...style,
-            position: 'relative',
-            minHeight: '150px',
-            minWidth: '170px' } }
+            position: 'relative' } }
           >
             <FileBody file={ this.props.file }/>
             <FileOptions file={ this.props.file } cl_mode={ this.props.file.cl_mode }/>
-            <FileIcon file={ this.props.file }/>
+            <FileIcon fileConf={ fileConf }/>
             {(file.busy && uploading_state) ?
               <div ref={ e => this.progress = e } className="ui tiny indicating progress"
             style={ { position: 'absolute', bottom: 0, left: 0, right: 0, width: '100%', margin: 0 } }

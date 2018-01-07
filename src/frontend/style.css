@@ -78,4 +78,12 @@ body{
 .file-options>.extra.content>.ui.buttons{
     position: absolute;
     bottom:0;
+    width:120px;
+    left:50%;
+    transform: translateX(-50%);
+}
+
+.file-each{
+    min-width:160px;
+    height:140px;
 }

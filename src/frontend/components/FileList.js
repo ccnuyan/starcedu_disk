@@ -47,10 +47,10 @@ class FileList extends Component {
 
     return (
       <div className="ui eight doubling cards">
-        <div className="card" style={ { position: 'relative', minHeight: '150px', minWidth: '170px' } }>
+        <div className="file-each card">
           <div className="content">
             <div className="ui header">
-              上传文件
+              网盘空间
             </div>
             <div className="meta">
               {`文件总数：${files.length}`}
@@ -60,7 +60,7 @@ class FileList extends Component {
             </div>
           </div>
           <div className="extra content">
-            <div ref={ e => this.uploadButton = e } className="ui button">
+            <div ref={ e => this.uploadButton = e } className="ui blue right floated button">
                 上传文件
             </div>
           </div>

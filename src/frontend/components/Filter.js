@@ -18,8 +18,7 @@ class Filter extends Component {
   }
   onFilterSelected = (event) => {
     const payload = {};
-    const { filter } = this.props;
-    payload[event.currentTarget.dataset.key] = !filter.filters[event.currentTarget.dataset.key];
+    payload[event.currentTarget.dataset.key] = true;
     this.props.set_filter_one(payload);
   }
   render = () => {
@@ -39,10 +38,10 @@ class Filter extends Component {
         <a className="item" ref={ e => this.uploadButton = e } data-content="上传新文件">
           <i className="green upload icon"></i>
         </a>
-        <a onTouchTap={ this.props.set_filter_all } className={ `${filter.all ? 'active' : ''} item` } data-content="显示所有文件">
+        {files.length > 0 ? <a onTouchTap={ this.props.set_filter_all } className={ `${filter.all ? 'active' : ''} item` } data-content="显示所有文件">
           <div className="filter-item-statistic">{files.length}</div>
           <i className="black folder icon"></i>
-        </a>
+        </a> : ''}
         {
           Object.keys(mimeMap).map(k =>
             (filterStatistics[k] > 0 ?
@@ -52,7 +51,7 @@ class Filter extends Component {
               onTouchTap={ this.onFilterSelected }
               >
                 <div className="filter-item-statistic">{filterStatistics[k]}</div>
-                <i className={ `${mimeMap[k].className} icon` }></i>
+                <i className={ `${mimeMap[k].color} ${mimeMap[k].className} icon` }></i>
               </a> : ''))
         }
         {/*  <div className="ui category search item">
