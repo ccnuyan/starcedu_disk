@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
 import filesActions from '../../store/actions/filesActions';
 import qiniuActions from '../../store/actions/qiniuFineUploader';
@@ -23,23 +24,36 @@ class Filter extends Component {
   }
   render = () => {
     const { filter } = this.props;
+
+    const files = Object.keys(this.props.uploaded_files).map((k) => {
+      return this.props.uploaded_files[k];
+    });
+
+    const filterStatistics = {};
+    Object.keys(mimeMap).forEach((k) => {
+      filterStatistics[k] = _.sum(files.map(f => (mimeMap[k].mimes.indexOf(f.mime) >= 0 ? 1 : 0)));
+    });
+
     return (
       <div className={ 'ui huge secondary bottom fixed icon menu filter-menu' } style={ { margin: 0, borderTop: '1px solid #0E6EB8', background: 'white' } }>
         <a className="item" ref={ e => this.uploadButton = e } data-content="上传新文件">
           <i className="green upload icon"></i>
         </a>
         <a onTouchTap={ this.props.set_filter_all } className={ `${filter.all ? 'active' : ''} item` } data-content="显示所有文件">
+          <div className="filter-item-statistic">{files.length}</div>
           <i className="black folder icon"></i>
         </a>
         {
           Object.keys(mimeMap).map(k =>
-            <a key={ k } data-key={ k }
+            (filterStatistics[k] > 0 ?
+              <a key={ k } data-key={ k }
               className={ `${filter.filters[k] ? 'active' : ''} item` }
               data-content={ mimeMap[k].tip }
               onTouchTap={ this.onFilterSelected }
-            >
-              <i className={ `${mimeMap[k].className} icon` }></i>
-            </a>)
+              >
+                <div className="filter-item-statistic">{filterStatistics[k]}</div>
+                <i className={ `${mimeMap[k].className} icon` }></i>
+              </a> : ''))
         }
         {/*  <div className="ui category search item">
           <div className="ui transparent icon input">
@@ -65,12 +79,13 @@ Filter.propTypes = {
   files_initialize: PropTypes.func.isRequired,
   set_filter_all: PropTypes.func.isRequired,
   set_filter_one: PropTypes.func.isRequired,
+  uploaded_files: PropTypes.object.isRequired,
   filter: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
-    uploadedFiles: state.files.toJSON().uploaded.files,
+    uploaded_files: state.files.toJSON().uploaded.files,
     filter: state.files.toJSON().filter,
   };
 };

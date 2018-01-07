@@ -46,7 +46,7 @@ class FileList extends Component {
     showFiles = _.orderBy(showFiles, ['busy', 'uploaded_at'], ['asc', 'desc']);
 
     return (
-      <div className="ui link eight doubling cards">
+      <div className="ui eight doubling cards">
         <div className="card" style={ { position: 'relative', minHeight: '150px', minWidth: '170px' } }>
           <div className="content">
             <div className="ui header">

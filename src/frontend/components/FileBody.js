@@ -25,8 +25,13 @@ class FileBody extends Component {
 
     if (file.cl_mode === 'rename') {
       return (<div className="content">
-        <div className="ui mini input field">
-          <input onChange={ this.handleTitleInput } ref={ e => this.newNameInput = e } type="text" placeholder="输入新文件名" value={ file.cl_input_name }/>
+        <div className="ui mini file-name-input input field">
+          <input
+          onChange={ this.handleTitleInput }
+          ref={ e => this.newNameInput = e }
+          type="text" placeholder="输入新文件名"
+          value={ file.cl_input_name }
+          />
         </div>
       </div>);
     }
