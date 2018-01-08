@@ -30,17 +30,17 @@ const create_file = async (req, res) => {
   });
 };
 
-const create_online_file = (req, res) => {
+const add_remote_file = (req, res) => {
   // https://developer.qiniu.com/kodo/api/1263/fetch
   const payload = {
     filename: req.body.filename,
     file_url: req.body.file_url,
   };
 
-  // const valRet = paramsValidator.validate(payload, ['filename']);
-  // if (valRet.code !== 0) {
-  //   return res.json(valRet);
-  // }
+  const valRet = paramsValidator.validate(payload, ['filename', 'file_url']);
+  if (valRet.code !== 0) {
+    return res.json(valRet);
+  }
 
   const encodeBucketdUrl = qiniuBusiness.encodeEntry();
   const encodeFileUrl = qiniuBusiness.encodeFileUrl(payload.file_url);
@@ -60,19 +60,39 @@ const create_online_file = (req, res) => {
     .then((qiniures) => {
       return qiniures.json();
     })
-    .then((ret) => {
-      return res.status(201).send({
-        code: 201,
-        message: 'file created',
-        data: ret,
+    .then(async (ret) => {
+      if (req.timeout) { return false; }
+
+      const ret1 = await fileServices.create_file({
+        uploader_id: req.user.id,
+        ...payload,
       });
+
+      const ret2 = await fileServices.update_file_status({
+        file_id: ret1.id,
+        size: ret.fsize,
+        etag: ret.hash,
+        mime: ret.mimeType,
+      });
+      if (!res.headersSent) {
+        return res.status(201).send({
+          code: 201,
+          message: 'file created',
+          data: ret2,
+        });
+      }
+      return false;
     })
     .catch((err) => {
-      return res.status(400).send({
-        code: 400,
-        message: 'file created',
-        data: err,
-      });
+      if (!res.headersSent) {
+        return res.status(400).send({
+          code: 400,
+          message: 'something wrong',
+          data: {
+            error: err,
+          },
+        });
+      }
     });
 };
 
@@ -192,5 +212,5 @@ export default {
   update_file_title,
   update_file_status,
   delete_file,
-  create_online_file,
+  add_remote_file,
 };

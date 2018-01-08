@@ -43,7 +43,7 @@ Endpoint: `/api/files?file_id={$file_id}`
 Method: `PUT`
 Params: `uploader_id, file_id, title`
 
-1. 更新文件状态（用于回调）
+1. 更新文件状态（用于回调）// 生产环境不调用
 Endpoint: `/api/files?file_id={$file_id}`  
 Method: `PUT`  
 Params: `etag, mime, size, id`  
@@ -52,5 +52,13 @@ Params: `etag, mime, size, id`
 Endpoint: `/api/files?file_id={$file_id}`  
 Method: `DELETE`  
 Params: `uploader_id, file_id`  
+
+
+---
+
+1. 添加远程文件
+Endpoint: `/api/files/add_remote_file`  
+Method: `POST`  
+Params: `filename, file_url`  
 
 

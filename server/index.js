@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
 import session from 'express-session';
 import connectRedis from 'connect-redis';
+// import timeout from 'connect-timeout';
 
 import '../globals';
 import config from '../config';
@@ -62,6 +63,7 @@ if (config.mode === 'test') {
 // auth
 app.use(tokenAuth);
 
+// app.use(timeout('5s'));
 routes(app);
 
 const server = app.listen(PORT, (err) => {

@@ -42,16 +42,14 @@ class FileOptions extends Component {
     $('.ui.dimmer.file-options')
       .dimmer({
         on: 'hover',
-      })
-      ;
+      });
   }
 
   componentDidUpdate() {
     $('.ui.dimmer.file-options')
       .dimmer({
         on: 'hover',
-      })
-      ;
+      });
   }
 
   render() {

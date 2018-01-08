@@ -99,12 +99,12 @@ describe('FILE BUSINESS', function () { // eslint-disable-line
       });
   });
 
-  it.only('when request to create a remote file', () => {
+  it('when request to create a remote file', () => {
     return chai.request(app)
-      .post('/api/files/create_online_file')
+      .post('/api/files/add_remote_file')
       .set('authorization', `bearer ${usertoken}`)
       .send({
-        filename: 'baidu',
+        filename: 'baidu.jpg',
         file_url: 'http://www.ccnu.edu.cn/__local/9/BE/1E/227D99AC5071495B37D18A7A181_99628090_1363C.jpg',
       })
       .then((res) => {
