@@ -7,11 +7,11 @@ export default {
   log: 'tiny',
   maxDelay: 1000,
   auth: {
-    jwt: {
+    session: {
       secret: '12345678',
     },
-    cookie: {
-      name: 'authorization',
+    jwt: {
+      secret: '12345678',
     },
   },
   dbname: 'starcedu_disk',
@@ -23,6 +23,10 @@ export default {
     port: process.env.DBPORT ? process.env.DBPORT : 5432,
     max: 10,
     idleTimeoutMillis: 30000,
+  },
+  redisSessionServer: {
+    host: 'localhost',
+    port: 6379,
   },
   qiniu_bucket: '7xt1pi.com1.z0.glb.clouddn.com',
   qiniu: {

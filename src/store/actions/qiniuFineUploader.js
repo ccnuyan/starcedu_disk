@@ -14,7 +14,7 @@ import fill from './messagesMW';
 const initialize = (uploaderConf) => {
   return (dispatch) => {
     const uploader = new fineuploader.FineUploaderBasic({
-    // debug: true,
+      // debug: true,
       maxConnections: 2,
       multiple: true,
       request: {
@@ -77,7 +77,7 @@ const initialize = (uploaderConf) => {
           }));
         },
         onComplete: (id, name, responseJSON) => {
-          if (config.upload_callback) {
+          if (config.upload_callback === 'callback') {
             const payload = {
               method: 'POST',
               credentials: 'include',

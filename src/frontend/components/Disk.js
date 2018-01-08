@@ -6,18 +6,19 @@ import Filter from './Filter';
 import Header from './Header';
 
 class Disk extends Component {
+  componentDidMount() {
+    $('#cssload-thecube').css({ display: 'none' });
+  }
+
   render = () => {
     return (
       <div className="starc-disk">
         <Header/>
-        <div className="ui container">
-          <div className="ui basic segment">
-            <Filter/>
-            <div className="ui hidden divider"></div>
-            <FileList />
-          </div>
+        <div className="ui files-container">
+          <FileList />
         </div>
-      </div >
+        <Filter/>
+      </div>
     );
   }
 }

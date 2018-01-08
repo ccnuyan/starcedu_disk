@@ -5,6 +5,8 @@ import compression from 'compression';
 import delay from 'express-delay';
 import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
+import session from 'express-session';
+import connectRedis from 'connect-redis';
 
 import '../globals';
 import config from '../config';
@@ -14,6 +16,7 @@ import crossDomain from './middleware/crossDomain';
 import utilities from './middleware/utilities';
 
 const app = express();
+const RedisStore = connectRedis(session);
 
 // serve the app
 const PORT = process.env.PORT || config.port;
@@ -37,9 +40,24 @@ if (config.maxDelay) {
   app.use(delay(0, config.maxDelay));
 }
 
-// custom middlewares
 app.use(utilities.ajaxDetector);
 app.use(crossDomain);
+
+const sessionConfig = {
+  secret: config.auth.session.secret,
+  resave: true,
+  saveUninitialized: false,
+  cookie: { httpOnly: true },
+};
+
+if (config.mode === 'test') {
+  app.use(session(sessionConfig));
+} else {
+  app.use(session({
+    store: new RedisStore(config.redisSessionServer),
+    ...sessionConfig,
+  }));
+}
 
 // auth
 app.use(tokenAuth);

@@ -3,7 +3,7 @@ import fileServices from '../api/services/fileServices';
 
 export default (app) => {
   app.get('/', async (req, res) => {
-    if (!req.user) {
+    if (!req.user || !req.user.id) {
       return res.redirect(302, '/user/signin?cb=/apps/disk/');
     }
 

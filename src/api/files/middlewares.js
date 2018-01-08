@@ -17,7 +17,7 @@ const exist = async (req, res, next) => {
     next();
   } else {
     res.send({
-      code: 400,
+      code: 111,
       message: 'file_id not provided',
     });
   }

@@ -4,6 +4,24 @@
     height:100%;
 }
 
+body *{
+ border-radius: 0 !important;
+}
+
+body{
+    height:100%;
+    background: #eee !important;
+    overflow: hidden;
+}
+.starc-disk{
+    height:100%;
+    overflow: hidden;
+}
+
+.starc-disk>.header.menu{
+    height:64px;
+}
+
 .starc-disk .menu .item:first-of-type{
     margin-left:0;
 }
@@ -11,11 +29,47 @@
     margin-right:0;
 }
 
-.starc-disk {
-    height:100%;
-    background: #eee;
+.starc-disk>.files-container{
+    width:100%;
+    height: 100%;
+    position: absolute;
+    overflow-y: auto;
+    padding: 60px 10px;
 }
-.starc-disk >.container{
-    padding-top:80px;
-    background: white;
+
+#filter-segment{
+    left:0;
+    right:0;
+}
+
+#file-list-segment{
+    overflow-y: auto;
+}
+
+.ui.card>.image.file-type-icon{
+    background: transparent;
+    opacity: 0.6;
+    position: absolute;
+    margin-top:10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);    
+}
+
+.file-each .file-name-input{
+    width:100%;
+}
+
+.file-options.dimmer{
+    background: transparent;
+}
+
+.file-options>.extra.content>.ui.buttons{
+    position: absolute;
+    bottom:0;
+}
+
+.file-each{
+    min-width:160px;
+    height:150px;
 }

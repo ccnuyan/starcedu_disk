@@ -29,15 +29,7 @@ const create_file = async (req, res) => {
 };
 
 const access_file = async (req, res) => {
-  const payload = {
-    file_id: req.query.file_id,
-  };
-
-  const valRet = paramsValidator.validate(payload, ['file_id']);
-  if (valRet.code !== 0) {
-    return res.json(valRet);
-  }
-
+  const payload = { file_id: req.file.id };
   const ret = await fileServices.require_file(payload);
 
   if (req.user.id !== ret.uploader_id) {
@@ -59,14 +51,7 @@ const access_file = async (req, res) => {
 };
 
 const require_file = async (req, res) => {
-  const payload = {
-    file_id: req.query.file_id,
-  };
-
-  const valRet = paramsValidator.validate(payload, ['file_id']);
-  if (valRet.code !== 0) {
-    return res.json(valRet);
-  }
+  const payload = { file_id: req.file.id };
   const ret = await fileServices.require_file(payload);
 
   if (req.user.id !== ret.uploader_id) {
@@ -98,7 +83,7 @@ const update_file_title = async (req, res) => {
     title: req.body.title,
   };
 
-  const valRet = paramsValidator.validate(payload, ['file_id', 'title']);
+  const valRet = paramsValidator.validate(payload, ['title']);
   if (valRet.code !== 0) {
     return res.json(valRet);
   }
@@ -109,7 +94,7 @@ const update_file_title = async (req, res) => {
 
   const ret = await fileServices.update_file_title({
     uploader_id: req.user.id,
-    file_id: req.body.file_id,
+    file_id: req.file.id,
     ...payload,
   });
   return res.send({

@@ -100,6 +100,20 @@ const set_cl_input_title = (dispatch, { file_id, title }) => {
   });
 };
 
+const set_filter_all = (dispatch) => {
+  dispatch({
+    type: actionTypes.FILES_SET_FILTER_ALL,
+    payload: { },
+  });
+};
+
+const set_filter_one = (dispatch, payload) => {
+  dispatch({
+    type: actionTypes.FILES_SET_FILTER_ONE,
+    payload,
+  });
+};
+
 
 export default {
   get_uploaded,
@@ -107,4 +121,6 @@ export default {
   remove,
   set_cl_mode,
   set_cl_input_title,
+  set_filter_all,
+  set_filter_one,
 };

@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const FileIcon = () => {
+const FileIcon = (props) => {
   return (
-    <i className="huge middle aligned outline image icon"></i>
+    <div className="image file-type-icon">
+      <i className={ `huge middle aligned ${props.fileConf.className} ${props.fileConf.color} icon` }></i>
+    </div>
   );
 };
 
 FileIcon.propTypes = {
-  file: PropTypes.object.isRequired,
+  fileConf: PropTypes.object.isRequired,
 };
 
 export default FileIcon;

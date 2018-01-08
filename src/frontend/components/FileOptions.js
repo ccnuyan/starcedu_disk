@@ -38,38 +38,63 @@ class FileOptions extends Component {
     this.props.set_cl_mode({ file_id: this.props.file.id, mode });
   }
 
+  componentDidMount() {
+    $('.ui.dimmer.file-options')
+      .dimmer({
+        on: 'hover',
+      })
+      ;
+  }
+
+  componentDidUpdate() {
+    $('.ui.dimmer.file-options')
+      .dimmer({
+        on: 'hover',
+      })
+      ;
+  }
+
   render() {
     const { file } = this.props;
 
     if (file.busy || file.cl_mode === 'renaming' || file.cl_mode === 'removing') {
-      return (<div/>);
+      return (<div />);
     }
 
     if (file.cl_mode === 'rename') {
-      return (<div className='right floated buttons'>
-        <div className={ 'ui blue mini button' } onTouchTap={ this.handleOK }>确定</div>
-        <div className="ui mini button" onTouchTap={ () => this.setMode('normal') }>取消</div>
-      </div>);
+      return (
+        <div className='ui two bottom attached mini buttons'>
+          <div className={ 'ui blue button' } onTouchTap={ this.handleOK }>OK</div>
+          <div className="ui  button" onTouchTap={ () => this.setMode('normal') }>NO</div>
+        </div>);
     }
 
     if (file.cl_mode === 'remove') {
-      return (<div className='right floated buttons'>
-        <div className={ 'ui red mini button' } onTouchTap={ this.handleOK }>确定</div>
-        <div className="ui mini button" onTouchTap={ () => this.setMode('normal') }>取消</div>
-      </div>);
+      return (
+        <div className='ui two bottom attached mini buttons'>
+          <div className={ 'ui red  button' } onTouchTap={ this.handleOK }>OK</div>
+          <div className="ui button" onTouchTap={ () => this.setMode('normal') }>NO</div>
+        </div>);
     }
 
     return (
-      <div className='right floated buttons'>
-        <a className="ui gray mini icon button" href={ `${config.serviceBase}/api/files/access?file_id=${file.id}` } target='blank'>
-          <i className="ui download icon"></i>
-        </a>
-        <a className="ui gray mini icon button" onTouchTap={ () => this.setMode('rename') }>
-          <i className="ui edit icon"></i>
-        </a>
-        <a className="ui gray mini icon button" onTouchTap={ () => this.setMode('remove') }>
-          <i className="ui trash icon"></i>
-        </a>
+      <div className='ui dimmer file-options'>
+        <div className="extra attached content">
+          <div className="ui four mini buttons">
+            <a className="ui mini icon button">
+              <i className="ui star icon"></i>
+            </a>
+            <a className="ui mini icon button" href={ `${config.serviceBase}/api/files/access?file_id=${file.id}` }>
+              <i className="ui download icon"></i>
+            </a>
+            <a className="ui mini icon button" onTouchTap={ () => this.setMode('rename') }>
+              <i className="ui edit icon"></i>
+            </a>
+            <a className="ui mini icon button" onTouchTap={ () => this.setMode('remove') }>
+              <i className="ui trash icon"></i>
+            </a>
+          </div>
+        </div>
       </div>);
   }
 }

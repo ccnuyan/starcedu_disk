@@ -24,6 +24,10 @@ const store = createStore(
 
         },
       },
+      filter: {
+        all: true,
+        filters: {},
+      },
     }),
     asyncStatus: fromJS({}),
   },
