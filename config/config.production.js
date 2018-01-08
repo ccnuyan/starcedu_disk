@@ -34,7 +34,7 @@ export default {
     url: 'http://7xt1pi.com1.z0.glb.clouddn.com',
   },
   redisSessionServer: {
-    host: 'localhost',
+    host: 'redis-server',
     port: 6379,
   },
   resources: {
