@@ -12,6 +12,8 @@ router.put('', auth, middlewares.exist, files.update_file_title);
 router.delete('', auth, middlewares.exist, files.delete_file);
 
 router.post('/upload_callback', files.update_file_status); // there is no auth for qiniu callback
+router.post('/create_online_file', files.create_online_file); // there is no auth for qiniu callback
+
 router.get('/uploaded', auth, files.require_uploaded_files);
 router.get('/access', middlewares.exist, files.access_file);
 
