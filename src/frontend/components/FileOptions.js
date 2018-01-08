@@ -43,7 +43,7 @@ class FileOptions extends Component {
       .dimmer({
         on: 'hover',
       })
-    ;
+      ;
   }
 
   componentDidUpdate() {
@@ -51,43 +51,46 @@ class FileOptions extends Component {
       .dimmer({
         on: 'hover',
       })
-    ;
+      ;
   }
 
   render() {
     const { file } = this.props;
 
     if (file.busy || file.cl_mode === 'renaming' || file.cl_mode === 'removing') {
-      return (<div/>);
+      return (<div />);
     }
 
     if (file.cl_mode === 'rename') {
       return (
-        <div className='ui two bottom attached buttons'>
-          <div className={ 'ui blue mini button' } onTouchTap={ this.handleOK }>OK</div>
-          <div className="ui mini button" onTouchTap={ () => this.setMode('normal') }>NO</div>
+        <div className='ui two bottom attached mini buttons'>
+          <div className={ 'ui blue button' } onTouchTap={ this.handleOK }>OK</div>
+          <div className="ui  button" onTouchTap={ () => this.setMode('normal') }>NO</div>
         </div>);
     }
 
     if (file.cl_mode === 'remove') {
       return (
-        <div className='ui two bottom attached buttons'>
-          <div className={ 'ui red mini button' } onTouchTap={ this.handleOK }>OK</div>
-          <div className="ui mini button" onTouchTap={ () => this.setMode('normal') }>NO</div>
+        <div className='ui two bottom attached mini buttons'>
+          <div className={ 'ui red  button' } onTouchTap={ this.handleOK }>OK</div>
+          <div className="ui button" onTouchTap={ () => this.setMode('normal') }>NO</div>
         </div>);
     }
 
     return (
       <div className='ui dimmer file-options'>
-        <div className="extra content">
-          <div className="ui buttons">
-            <a className="ui green mini icon button" href={ `${config.serviceBase}/api/files/access?file_id=${file.id}` }>
+        <div className="extra attached content">
+          <div className="ui four mini buttons">
+            <a className="ui mini icon button">
+              <i className="ui star icon"></i>
+            </a>
+            <a className="ui mini icon button" href={ `${config.serviceBase}/api/files/access?file_id=${file.id}` }>
               <i className="ui download icon"></i>
             </a>
-            <a className="ui blue mini icon button" onTouchTap={ () => this.setMode('rename') }>
+            <a className="ui mini icon button" onTouchTap={ () => this.setMode('rename') }>
               <i className="ui edit icon"></i>
             </a>
-            <a className="ui red mini icon button" onTouchTap={ () => this.setMode('remove') }>
+            <a className="ui mini icon button" onTouchTap={ () => this.setMode('remove') }>
               <i className="ui trash icon"></i>
             </a>
           </div>
