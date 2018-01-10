@@ -55,7 +55,23 @@ const getAccessUrl = (file_id) => {
   return { access_url };
 };
 
+const generateAccessToken = (requestURI, body) => {
+  // https://github.com/qiniu/nodejs-sdk/blob/master/qiniu/util.js
+  return qiniu.util.generateAccessToken(mac, requestURI, body);
+};
+
+const encodeEntry = () => {
+  return qiniu.util.urlsafeBase64Encode(conf.qiniu.bucket);
+};
+
+const encodeFileUrl = (fileUrl) => {
+  return qiniu.util.urlsafeBase64Encode(fileUrl);
+};
+
 export default {
   requestUpload,
   getAccessUrl,
+  generateAccessToken,
+  encodeEntry,
+  encodeFileUrl,
 };

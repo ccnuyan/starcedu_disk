@@ -20,6 +20,9 @@ const validationRules = {
   size: {
     emptyCode: 161,
   },
+  file_url: {
+    emptyCode: 171,
+  },
 };
 
 const validate = (payload, nonNullParamsArray) => {

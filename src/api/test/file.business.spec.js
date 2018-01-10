@@ -11,6 +11,7 @@ const callbackbody = {
 };
 
 describe('FILE BUSINESS', function () { // eslint-disable-line
+  this.timeout(10000);
   this.filename = 'filename';
   before(() => {
     return pgPool.query('delete from starcedu_disk.files'); // eslint-disable-line
@@ -93,6 +94,21 @@ describe('FILE BUSINESS', function () { // eslint-disable-line
       .set('authorization', `bearer ${usertoken}`)
       .then((res) => {
         res.should.have.status(200);
+        res.body.should.be.a('object');
+        return res;
+      });
+  });
+
+  it('when request to create a remote file', () => {
+    return chai.request(app)
+      .post('/api/files/add_remote_file')
+      .set('authorization', `bearer ${usertoken}`)
+      .send({
+        filename: 'baidu.jpg',
+        file_url: 'http://www.ccnu.edu.cn/__local/9/BE/1E/227D99AC5071495B37D18A7A181_99628090_1363C.jpg',
+      })
+      .then((res) => {
+        res.should.have.status(201);
         res.body.should.be.a('object');
         return res;
       });
