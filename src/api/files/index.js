@@ -4,6 +4,7 @@ import timeout from 'connect-timeout';
 import files from './files';
 import auth from '../authMiddleware';
 import middlewares from './middlewares';
+import tenant from '../tenantAuthMiddleware';
 
 
 const router = Router();
@@ -14,9 +15,11 @@ router.put('', auth, middlewares.exist, files.update_file_title);
 router.delete('', auth, middlewares.exist, files.delete_file);
 
 router.post('/upload_callback', files.update_file_status); // there is no auth for qiniu callback
-router.post('/add_remote_file', auth, timeout('10s', { reqpond: true }), files.add_remote_file); // there is no auth for qiniu callback
+router.post('/remote', auth, timeout('10s', { reqpond: true }), files.add_remote_file); // there is no auth for qiniu callback
 
 router.get('/uploaded', auth, files.require_uploaded_files);
 router.get('/access', middlewares.exist, files.access_file);
+
+router.post('/tenant/access', tenant, files.tenant_access_file);
 
 export default router;

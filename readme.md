@@ -57,7 +57,7 @@ Params: `uploader_id, file_id`
 ---
 
 1. 添加远程文件
-Endpoint: `/api/files/add_remote_file`  
+Endpoint: `/api/files/remote`  
 Method: `POST`  
 Params: `filename, file_url`  
 

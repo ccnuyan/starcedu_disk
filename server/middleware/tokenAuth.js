@@ -5,30 +5,40 @@
 import { verify } from '../../src/services/tokenServices';
 
 export default (req, res, next) => {
-  let token = '';
-
-  if (req.session.user) {
+  if (req.session && req.session.user) {
     req.user = req.session.user;
     return next();
   }
 
-  if (req.headers.authorization) {
-    const breaks = req.headers.authorization.split(' ');
-    if (breaks.length === 2 && breaks[0] === 'bearer') {
-      if (breaks[1] !== 'null') {
-        token = breaks[1];
-      }
-    }
-  } else if (req.cookies.authorization) {
-    token = req.cookies.authorization;
+  // no authorization token: bypass
+  if (!req.headers.authorization) {
+    return next();
   }
 
-  if (!token) {
+  // authorization not in right format: bypass
+  const breaks = req.headers.authorization.split(' ');
+  if (breaks.length !== 2) {
+    return next();
+  }
+  if (breaks[1] === 'null' || breaks[1] === 'undefined') {
     return next();
   }
 
   try {
-    req.user = verify(token);
+    // user token authentication
+    if (breaks[0] === 'bearer') {
+      const decoded = verify(breaks[1]);
+      req.user = decoded;
+    }
+    // tenant basic authentication
+    if (breaks[0] === 'basic') {
+      const credentials = new Buffer(breaks[1], 'base64').toString().split(':');
+      if (credentials.length === 2) {
+        if (tenants[credentials[0]] && tenants[credentials[0]].pass === credentials[1]) {
+          req.tenant = tenants[credentials[0]];
+        }
+      }
+    }
   } catch (err) {
     global.printError(err, __filename);
   } finally {

@@ -5,7 +5,7 @@
   "description": "starcedu_auth",
   "scripts": {
     "start": "cross-env NODE_ENV=production && babel-node ./server/index",
-    "start-dev": "cross-env NODE_ENV=development && babel-node ./server/index",
+    "start-dev": "npm-run-all -p wp-dev server-dev",
     "eslint": "node_modules/.bin/eslint --ignore-path .eslintignore ./**/*.js",
     "db-build": "babel-node ./database/index build",
     "db-functions-build": "babel-node ./database/index functions-build",
@@ -155,7 +155,8 @@
       "printMessage": true,
       "chai": true,
       "expect": true,
-      "should": true
+      "should": true,
+      "tenants": true
     },
     "rules": {
       "class-methods-use-this": 0,

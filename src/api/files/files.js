@@ -204,6 +204,17 @@ const delete_file = async (req, res) => {
   });
 };
 
+const tenant_access_file = async (req, res) => {
+  const files = req.body.files;
+  const filledFiles = files.map((file) => {
+    return {
+      ...file,
+      ...qiniuBusiness.getAccessUrl(file.etag),
+    };
+  });
+  return res.status(200).send({ files: filledFiles });
+};
+
 export default {
   create_file,
   require_file,
@@ -213,4 +224,5 @@ export default {
   update_file_status,
   delete_file,
   add_remote_file,
+  tenant_access_file,
 };
