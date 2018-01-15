@@ -1,5 +1,8 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
+
+import '../../../config';
+
 import pgPool from '../../../database/connector';
 import app from '../../../server';
 

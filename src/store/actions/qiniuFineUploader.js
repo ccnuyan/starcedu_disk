@@ -46,7 +46,7 @@ const initialize = (uploaderConf) => {
             }),
           };
 
-          return fetch(`${config.serviceBase}/api/files/`, payload)
+          return fetch(`${config.serviceBase}/api/local/files/`, payload)
           .then(res => res.json())
           .then((ret) => {
             uploader.setParams({ token: ret.data.token, 'x:id': ret.data.id }, id);
@@ -85,7 +85,7 @@ const initialize = (uploaderConf) => {
               body: JSON.stringify(responseJSON),
             };
 
-            return fetch(`${config.serviceBase}/api/files/upload_callback`, payload)
+            return fetch(`${config.serviceBase}/api/local/files/upload_callback`, payload)
             .then(res => res.json())
             .then((ret) => {
               dispatch(fill({
@@ -110,7 +110,7 @@ const initialize = (uploaderConf) => {
             headers: utils.getHeaders(),
           };
 
-          return fetch(`${config.serviceBase}/api/files?file_id=${responseJSON.id}`, payload)
+          return fetch(`${config.serviceBase}/api/local/files?file_id=${responseJSON.id}`, payload)
           .then(res => res.json())
           .then((ret) => {
             dispatch(fill({

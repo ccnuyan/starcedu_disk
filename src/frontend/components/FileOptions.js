@@ -82,7 +82,7 @@ class FileOptions extends Component {
             <a className="ui mini icon button">
               <i className="ui star icon"></i>
             </a>
-            <a className="ui mini icon button" href={ `${config.serviceBase}/api/files/access?file_id=${file.id}` }>
+            <a className="ui mini icon button" href={ `${config.serviceBase}/api/local/files/access?file_id=${file.id}` }>
               <i className="ui download icon"></i>
             </a>
             <a className="ui mini icon button" onTouchTap={ () => this.setMode('rename') }>

@@ -8,8 +8,7 @@ const file = {
   filename: 'file.txt',
 };
 
-
-describe('CRUD FILES', function () { // eslint-disable-line
+describe('database file crud bussiness', function () { // eslint-disable-line
   describe('create a new file', () => {
     before(async () => {
       return pgPool.query('select * from starcedu_disk.create_file($1, $2)', [

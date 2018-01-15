@@ -13,6 +13,8 @@ export default {
     jwt: {
       secret: '12345678',
     },
+    userHeader: 'authorization',
+    tenantHeader: 'starcedu-tenant-authorization',
   },
   dbname: 'starcedu_disk',
   pg: {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Motion, spring } from 'react-motion';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import FileList from './FileList';
@@ -7,18 +8,23 @@ import Header from './Header';
 
 class Disk extends Component {
   componentDidMount() {
-    $('#cssload-thecube').css({ display: 'none' });
+    setTimeout(() => {
+      $('#cssload-thecube').css({ display: 'none' });
+      $('#react').css({ display: 'block' });
+    }, 200);
   }
 
   render = () => {
     return (
-      <div className="starc-disk">
-        <Header/>
-        <div className="ui files-container">
-          <FileList />
-        </div>
-        <Filter/>
-      </div>
+      <Motion defaultStyle={ { opacity: 0 } } style={ { opacity: spring(1) } }>
+        {value => <div className="starc-disk" style={ value }>
+          <Header/>
+          <div className="ui files-container">
+            <FileList />
+          </div>
+          <Filter/>
+        </div>}
+      </Motion>
     );
   }
 }

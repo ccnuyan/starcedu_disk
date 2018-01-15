@@ -2,7 +2,7 @@
   "name": "starcedu_disk",
   "author": "ccnuyan",
   "version": "1.0.0",
-  "description": "starcedu_auth",
+  "description": "starcedu_disk",
   "scripts": {
     "start": "cross-env NODE_ENV=production && babel-node ./server/index",
     "start-dev": "npm-run-all -p wp-dev server-dev",
@@ -156,7 +156,9 @@
       "chai": true,
       "expect": true,
       "should": true,
-      "tenants": true
+      "tenants": true,
+      "serverConfig":true,
+      "_":true
     },
     "rules": {
       "class-methods-use-this": 0,

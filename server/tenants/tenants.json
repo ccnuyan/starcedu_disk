@@ -11,11 +11,11 @@
         "local":true,
         "pass": "notebook_mobile_android_pass"
     },
-    "local_test_tanant": {
-        "title":"local_test_tanant的标题",
-        "description":"local_test_tanant的描述",
+    "local_test_tenant": {
+        "title":"local_test_tenant的标题",
+        "description":"local_test_tenant的描述",
         "local":true,
-        "pass": "local_test_tanant_pass"
+        "pass": "local_test_tenant_pass"
     },
     "test_3rdparty_tenant1": {
         "title":"测试APP",

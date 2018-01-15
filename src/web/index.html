@@ -12,6 +12,16 @@ _starc_edu_styles_
 <body>
 <div id="react"></div>
 <style>
+#cssload-thecube{
+    z-index: 65535;
+    position: absolute;
+    background: white;
+    width:100%;
+    height:100%;
+}
+#react{
+    display: none;
+}
 .cssload-thecube {
 	width: 73px;
 	height: 73px;
@@ -140,11 +150,14 @@ _starc_edu_styles_
     100% { -moz-transform: perspective(136px) rotateY(180deg); opacity: 0;}
 }
 </style>
-<div id="cssload-thecube" class="cssload-thecube" style="position:fixed; margin-top:-36.5px; margin-left:-36.5px; left:50%; top:50%;">
-    <div class="cssload-cube cssload-c1"></div>
-    <div class="cssload-cube cssload-c2"></div>
-    <div class="cssload-cube cssload-c4"></div>
-    <div class="cssload-cube cssload-c3"></div>
+<div id="cssload-thecube" >
+    <div class="cssload-thecube" 
+    style="position:fixed; margin-top:-36.5px; margin-left:-36.5px; left:50%; top:50%;">
+        <div class="cssload-cube cssload-c1"></div>
+        <div class="cssload-cube cssload-c2"></div>
+        <div class="cssload-cube cssload-c4"></div>
+        <div class="cssload-cube cssload-c3"></div>
+    </div>
 </div>
 <script>
 window.__PRELOADED_STATE__ = _starc_server_state_

@@ -1,5 +1,5 @@
 // import chalk from 'chalk';
-
+import lodash from 'lodash';
 import development from './config.development';
 import production from './config.production';
 import test from './config.test';
@@ -16,4 +16,7 @@ if (process.env.NODE_ENV === 'production') {
   configVar.env = 'development';
 }
 const config = configVar;
+global.serverConfig = config;
+global._ = lodash;
+
 export default config;

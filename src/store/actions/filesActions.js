@@ -18,7 +18,7 @@ const get_uploaded = () => {
 
     dispatch(fill({ type: actionTypes.FILES_GET_UPLOADED_START }));
 
-    fetch(`${base}/api/files/uploaded`, payload)
+    fetch(`${base}/api/local/files/uploaded`, payload)
     .then(res => res.json())
     .then((ret) => {
       dispatch(fill({ type: actionTypes.FILES_GET_UPLOADED_END, payload: ret.data }));
@@ -44,7 +44,7 @@ const update = ({ file_id, title }) => {
 
     dispatch(fill({ type: actionTypes.FILES_UPDATE_START, payload: { file_id, title } }));
 
-    fetch(`${base}/api/files`, payload)
+    fetch(`${base}/api/local/files`, payload)
     .then(res => res.json())
     .then((ret) => {
       if (ret.code === 0) {
@@ -71,7 +71,7 @@ const remove = ({ file_id }) => {
 
     dispatch(fill({ type: actionTypes.FILES_REMOVE_START, payload: { file_id } }));
 
-    fetch(`${base}/api/files`, payload)
+    fetch(`${base}/api/local/files`, payload)
     .then(res => res.json())
     .then((ret) => {
       if (ret.code === 0) {

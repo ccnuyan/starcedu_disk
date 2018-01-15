@@ -13,13 +13,15 @@ export default {
     jwt: {
       secret: '12345678',
     },
+    userHeader: 'authorization',
+    tenantHeader: 'starcedu-tenant-authorization',
   },
   dbname: 'starcedu_disk',
   pg: {
     user: process.env.DBUSER ? process.env.DBUSER : 'postgres',
-    database: process.env.DBDATABASE ? process.env.DBDATABASE : 'postgres',
+    database: process.env.DBDATABASE ? process.env.DBDATABASE : 'postgres-test',
     password: process.env.DBPASSWORD ? process.env.DBPASSWORD : '',
-    host: process.env.DBHOST ? process.env.DBHOST : 'database-test',
+    host: process.env.DBHOST ? process.env.DBHOST : 'localhost',
     port: process.env.DBPORT ? process.env.DBPORT : 5432,
     max: 2,
     idleTimeoutMillis: 30000,

@@ -20,8 +20,7 @@ const create_file = async (req, res) => {
     ...payload,
   });
 
-  return res.status(201).send({
-    code: 201,
+  return res.send({
     message: 'token created',
     data: {
       ...ret,
@@ -75,8 +74,7 @@ const add_remote_file = (req, res) => {
         mime: ret.mimeType,
       });
       if (!res.headersSent) {
-        return res.status(201).send({
-          code: 201,
+        return res.send({
           message: 'file created',
           data: ret2,
         });
@@ -86,8 +84,7 @@ const add_remote_file = (req, res) => {
     .catch((err) => {
       if (!res.headersSent) {
         return res.status(400).send({
-          code: 400,
-          message: 'something wrong',
+          message: 'something wrong in remote server',
           data: {
             error: err,
           },
@@ -101,16 +98,14 @@ const access_file = async (req, res) => {
   const ret = await fileServices.require_file(payload);
 
   if (req.user.id !== ret.uploader_id) {
-    return req.status(401).send({
-      code: 401,
-      message: 'unauthorized',
+    return req.status(403).send({
+      message: 'this user is not allowed to do this operation',
     });
   }
 
   const acessUrlObject = qiniuBusiness.getAccessUrl(ret.etag);
   if (req.isAjaxRequest) {
     return res.send({
-      code: 0,
       message: 'access url retrived',
       data: acessUrlObject,
     });
@@ -123,13 +118,11 @@ const require_file = async (req, res) => {
   const ret = await fileServices.require_file(payload);
 
   if (req.user.id !== ret.uploader_id) {
-    return req.status(401).send({
-      code: 401,
-      message: 'unauthorized',
+    return req.status(403).send({
+      message: 'this user is not allowed to do this operation',
     });
   }
   return res.send({
-    code: 0,
     message: 'file get',
     data: ret,
   });
@@ -140,7 +133,6 @@ const require_uploaded_files = async (req, res) => {
     uploader_id: req.user.id,
   });
   return res.send({
-    code: 0,
     message: 'files get',
     data: ret,
   });
@@ -166,7 +158,6 @@ const update_file_title = async (req, res) => {
     ...payload,
   });
   return res.send({
-    code: 0,
     message: 'file title updated',
     data: ret,
   });
@@ -212,7 +203,7 @@ const tenant_access_file = async (req, res) => {
       ...qiniuBusiness.getAccessUrl(file.etag),
     };
   });
-  return res.status(200).send({ files: filledFiles });
+  return res.send({ files: filledFiles });
 };
 
 export default {
