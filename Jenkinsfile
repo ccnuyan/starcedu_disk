@@ -25,7 +25,8 @@ pipeline {
     }
     stage('run test') {
       steps {
-        sh 'docker run --rm --name disktest -i --link database-test:database-test starcedu/disk:test'
+        sh 'docker run --rm --name disktest -i --link database-test:database-test -e DBHOST=database-test -e DBDATABASE=postgres starcedu/disk:test'
+        sh 'docker rm -f database-test'
       }
     }
     stage('build prod') {
@@ -36,8 +37,7 @@ pipeline {
     stage('push prod') {
       steps {
         sh 'docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD" registry.cn-hangzhou.aliyuncs.com'
-        sh '''docker tag startcedu/disk:latest registry.cn-hangzhou.aliyuncs.com/ccnuyan/starcedu_disk:latest
-'''
+        sh 'docker tag startcedu/disk:latest registry.cn-hangzhou.aliyuncs.com/ccnuyan/starcedu_disk:latest'
         sh 'docker push registry.cn-hangzhou.aliyuncs.com/ccnuyan/starcedu_disk:latest'
       }
     }
