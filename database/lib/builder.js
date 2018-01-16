@@ -58,7 +58,6 @@ const install = () => {
     return process.exit(1);
   });
 };
-};
 
 export default {
   readSql,
