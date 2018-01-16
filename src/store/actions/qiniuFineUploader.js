@@ -85,7 +85,7 @@ const initialize = (uploaderConf) => {
               body: JSON.stringify(responseJSON),
             };
 
-            return fetch(`${config.serviceBase}/api/local/files/upload_callback`, payload)
+            return fetch(`${config.serviceBase}/api/files/upload_callback`, payload)
             .then(res => res.json())
             .then((ret) => {
               dispatch(fill({

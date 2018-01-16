@@ -17,25 +17,25 @@
         "local":true,
         "pass": "local_test_tenant_pass"
     },
-    "test_3rdparty_tenant1": {
+    "oauth_test_tenant1": {
         "title":"测试APP",
         "description":"测试APP的描述： 只用于测试，在生产环境不可用, 应部署在本机的28000端口",
         "local":false,
         "auth": ["oauth"],
         "fields": ["disk"],
-        "pass": "test_3rdparty_tenant1_pass",
-        "key": "test_3rdparty_tenant1_key",
+        "oauth_pass": "test_tenant1_pass",
+        "oauth_key": "test_tenant1_key",
         "redirect_url": "http://localhost:28000/oauth/callback",
         "home_url": "http://localhost:28000"
     },
-    "test_3rdparty_tenant2": {
+    "oauth_test_tenant2": {
         "title":"测试APP",
         "description":"测试APP的描述： 只用于测试，在生产环境不可用, 应部署在本机的28000端口",
         "local":false,
         "auth": ["oauth"],
         "fields": [],
-        "pass": "test_3rdparty_tenant2_pass",
-        "key": "test_3rdparty_tenant2_key",
+        "oauth_pass": "test_tenant2_pass",
+        "oauth_key": "test_tenant2_key",
         "redirect_url": "http://localhost:28000/oauth/callback",
         "home_url": "http://localhost:28000"
     }

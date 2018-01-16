@@ -97,6 +97,19 @@ describe('file business', function () { // eslint-disable-line
       });
   });
 
+  it('should not return empty list because the file has not been uploaded', () => {
+    return chai.request(app)
+      .get('/api/tenant/files/uploaded')
+      .set(serverConfig.auth.userHeader, `bearer ${this.user.token}`)
+      .then((res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.message.should.equal('files get');
+        res.body.data.should.be.an('array').have.length(1);
+        return res;
+      });
+  });
+
   it('should return the updated file when try to get file again', () => {
     return chai.request(app)
       .get(`/api/tenant/files?file_id=${this.fileUploaded.id}`)
@@ -113,12 +126,13 @@ describe('file business', function () { // eslint-disable-line
       .post('/api/tenant/files/remote')
       .set(serverConfig.auth.userHeader, `bearer ${this.user.token}`)
       .send({
-        filename: 'baidu.jpg',
+        filename: 'ccnu.jpg',
         file_url: 'http://www.ccnu.edu.cn/__local/9/BE/1E/227D99AC5071495B37D18A7A181_99628090_1363C.jpg',
       })
       .then((res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
+
         return res;
       });
   });
