@@ -5,7 +5,6 @@ import files from './files';
 import auth from '../authMiddleware';
 import middlewares from './middlewares';
 
-
 const router = Router();
 
 router.get('', middlewares.exist, files.require_file);
