@@ -65,6 +65,7 @@ describe('file business', function () { // eslint-disable-line
         res.body.should.be.a('object');
         res.body.data.filename.should.equal(this.filename);
         res.body.data.token.should.exist;
+
         this.fileUploaded = res.body.data;
         return res;
       });
