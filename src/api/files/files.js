@@ -189,21 +189,23 @@ const delete_file = async (req, res) => {
   });
 
   return res.send({
-    code: 0,
     message: 'file removed',
     data: ret,
   });
 };
 
 const tenant_access_file = async (req, res) => {
-  const files = req.body.files;
-  const filledFiles = files.map((file) => {
-    return {
-      ...file,
-      ...qiniuBusiness.getAccessUrl(file.etag),
-    };
-  });
-  return res.send({ files: filledFiles });
+  if (req.body && req.body.files) {
+    const files = req.body.files;
+    const filledFiles = files.map((file) => {
+      return {
+        ...file,
+        ...qiniuBusiness.getAccessUrl(file.etag),
+      };
+    });
+    return res.send({ files: filledFiles });
+  }
+  return res.status(400).send({ message: 'no files provided' });
 };
 
 export default {
