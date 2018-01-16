@@ -43,7 +43,7 @@ describe('file tenant access business', function () { // eslint-disable-line
   it('should return filled files for authorized 3rdparty tenant', () => {
     return chai.request(app)
       .post('/api/files/tenant/access')
-      .set(serverConfig.auth.userHeader, `basic ${new Buffer(`${tenants.test_3rdparty_tenant1.id}:${tenants.test_3rdparty_tenant1.pass}`).toString('base64')}`)
+      .set(serverConfig.auth.userHeader, `basic ${new Buffer(`${tenants.oauth_test_tenant1.id}:${tenants.oauth_test_tenant1.pass}`).toString('base64')}`)
       .send({ files: [{ etag: '123' }, { etag: '456' }] })
       .then((res) => {
         res.should.have.status(200);
@@ -58,7 +58,7 @@ describe('file tenant access business', function () { // eslint-disable-line
   it('should not return filled files for unauthorized 3rdparty tenant', () => {
     return chai.request(app)
       .post('/api/files/tenant/access')
-      .set(serverConfig.auth.userHeader, `basic ${new Buffer(`${tenants.test_3rdparty_tenant2.id}:${tenants.test_3rdparty_tenant2.pass}`).toString('base64')}`)
+      .set(serverConfig.auth.userHeader, `basic ${new Buffer(`${tenants.oauth_test_tenant2.id}:${tenants.oauth_test_tenant2.pass}`).toString('base64')}`)
       .send({ files: [{ etag: '123' }, { etag: '456' }] })
       .catch((err) => {
         err.response.should.have.status(401);

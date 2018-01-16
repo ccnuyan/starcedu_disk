@@ -98,7 +98,7 @@ const access_file = async (req, res) => {
   const ret = await fileServices.require_file(payload);
 
   if (req.user.id !== ret.uploader_id) {
-    return req.status(403).send({
+    return res.status(403).send({
       message: 'this user is not allowed to do this operation',
     });
   }
@@ -118,7 +118,7 @@ const require_file = async (req, res) => {
   const ret = await fileServices.require_file(payload);
 
   if (req.user.id !== ret.uploader_id) {
-    return req.status(403).send({
+    return res.status(403).send({
       message: 'this user is not allowed to do this operation',
     });
   }

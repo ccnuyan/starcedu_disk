@@ -15,10 +15,11 @@ describe('file business', function () { // eslint-disable-line
   this.filename = 'filename';
   before(async () => {
     await pgPool.query('delete from starcedu_disk.files');
-    await pgPool.query('delete from starcedu_auth.users');
-    const userObject = await pgPool.query('select * from starcedu_auth.register($1, $2)', ['user@test.com', '123456']);
 
-    this.user = _.pick(userObject.rows[0], ['id', 'username']);
+    this.user = {
+      id: '1234567890',
+      username: 'test@user.com',
+    };
     this.user.token = jwt.sign({
       ...this.user,
       to: 'local_test_tenant',
