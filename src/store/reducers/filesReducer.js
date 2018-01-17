@@ -1,14 +1,15 @@
 import { fromJS, Map } from 'immutable';
 import actionTypes from '../actionTypes';
 
+const preloadedState = window.__PRELOADED_STATE__;
+
 const filesinit = fromJS({
   filter: {
     all: true,
     filters: {},
   },
   uploaded: {
-    files: {
-    },
+    files: preloadedState && preloadedState.files ? preloadedState.files.uploaded.files : {},
   },
   uploading: {
     files: {

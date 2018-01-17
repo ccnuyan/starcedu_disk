@@ -1,7 +1,9 @@
 import { fromJS } from 'immutable';
 
+const preloadedState = window.__PRELOADED_STATE__;
+
 const userinit = fromJS({
-  user: {},
+  user: preloadedState && preloadedState.user ? preloadedState.user.user : {},
 });
 
 /* eslint-disable no-param-reassign */
