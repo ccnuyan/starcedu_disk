@@ -9,13 +9,12 @@ const base = config.serviceBase;
 /* eslint-disable no-useless-return */
 
 const get_uploaded = () => {
-  (dispatch) => {
+  return (dispatch) => {
     const payload = {
       method: 'GET',
       credentials: 'include',
       headers: utils.getHeaders(),
     };
-
     dispatch(fill({ type: actionTypes.FILES_GET_UPLOADED_START }));
 
     fetch(`${base}/api/local/files/uploaded`, payload)

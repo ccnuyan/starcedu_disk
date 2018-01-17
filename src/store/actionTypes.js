@@ -9,7 +9,6 @@ export const syncTypes = [
 ];
 export const asyncTypes = [
   'FILES_GET_UPLOADED',
-
   'FILES_UPLOAD_GET_TOKEN',
   'FILES_UPLOAD_PROGRESS',
   'FILES_UPLOAD',
