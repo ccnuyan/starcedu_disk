@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import './style.css';
+import './app.css';
 import './includes';
 
 import Disk from './components/Disk';
@@ -13,8 +14,12 @@ const rootNode = document.getElementById('react');
 
 Provider.propTypes.children = PropTypes.object;
 
+const uiConfig = {
+  config: {},
+};
+
 ReactDOM.render(
-  <Provider store={ store }>
+  <Provider store={ store(uiConfig) }>
     <Disk/>
   </Provider>,
   rootNode);

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import fileSize from 'file-size';
 import _ from 'lodash';
 import File from './File';
-import filesActions from '../../store/actions/filesActions';
 import qiniuActions from '../../store/actions/qiniuFineUploader';
 import mimeMap from './mimeMap';
 
@@ -13,7 +12,6 @@ class FileList extends Component {
     uploaded_files: PropTypes.object.isRequired,
     filter: PropTypes.object.isRequired,
     files_initialize: PropTypes.func.isRequired,
-    files_get_uploaded: PropTypes.func.isRequired,
   };
 
   componentDidMount = () => {
@@ -82,9 +80,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    files_get_uploaded: () => {
-      dispatch(filesActions.get_uploaded());
-    },
     files_initialize: ({ button }) => {
       dispatch(qiniuActions.initialize({ button }));
     },
