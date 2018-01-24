@@ -16,4 +16,4 @@ ENV NODE_ENV production
 RUN npm run wp-build
 
 CMD [ "npm", "start" ]
-EXPOSE 8000
+EXPOSE 18000
