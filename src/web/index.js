@@ -1,13 +1,13 @@
 import indexHtml from './indexFabricator';
-import appTestHtml from './appTestFabricator';
+// import appTestHtml from './appTestFabricator';
 import fileServices from '../api/services/fileServices';
 
 export default (app) => {
-  if (serverConfig.mode === 'development') {
-    app.get('/test', (req, res) => {
-      res.send(appTestHtml);
-    });
-  }
+  // if (serverConfig.mode === 'development') {
+  //   app.get('/test', (req, res) => {
+  //     res.send(appTestHtml);
+  //   });
+  // }
 
   app.get('/', async (req, res) => {
     if (!req.user || !req.user.id) {

@@ -9,8 +9,8 @@ const rules = require('./webpack/commonRules.js');
 const config = {
   entry: {
     app: ['babel-polyfill', './src/frontend/app.js'],
-    app_test: ['babel-polyfill', './src/frontend/app_test.js'],
-    app_embed: ['babel-polyfill', './src/frontend/app_embed.js'],
+    // app_test: ['babel-polyfill', './src/frontend/app_test.js'],
+    // app_embed: ['babel-polyfill', './src/frontend/app_embed.js'],
   },
   target: 'web',
   output: {
