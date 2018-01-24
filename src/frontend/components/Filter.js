@@ -34,7 +34,7 @@ class Filter extends Component {
       filterStatistics[k] = _.sum(files.map(f => (mimeMap[k].mimes.indexOf(f.mime) >= 0 ? 1 : 0)));
     });
 
-    return (<div className={ `ui huge secondary bottom icon menu filter-menu ${embed ? '' : ' fixed'}` }
+    return (<div className={ `ui huge secondary icon menu filter-menu ${embed ? '' : ' bottom fixed'}` }
       style={ { margin: 0, borderTop: '1px solid #0E6EB8', background: 'white' } }
             >
       <a className="item" ref={ e => this.uploadButton = e } data-content="上传新文件">
